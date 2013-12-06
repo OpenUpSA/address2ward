@@ -5,6 +5,7 @@ update config.py to suit your settings
 Install postgis - this is actually quite a bother - I'm not going to describe how to do it here. See the bottom of this file for the commands that I needed to run on my Ubuntu 13.04 machine.
 
 Setup a postgis user and database:
+
     > sudo su postgres
     > createuser -P <myuser>
     Enter password for new role: 
