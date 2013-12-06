@@ -3,32 +3,53 @@ from geopy.geocoders import GoogleV3
 import config
 import psycopg2
 
-geolocator = GoogleV3()
-conn = psycopg2.connect(
-    database=config.database, user=config.user, 
-    host=config.host, password=config.password
-)
-curs = conn.cursor()
+class AddressConverter(object):
+    def __init__(self, curs):
+        self.curs = curs
+        self.geolocator = GoogleV3()
+        
+    def convert(self, address):
+        result = self.geolocator.geocode(address)
+        if not result: return None
 
-try:
-    while True:
-        address = raw_input("Enter in an address: ")
-        address, (latitude, longitude) = geolocator.geocode(address)
-
+        address, (latitude, longitude) = result
         poi = (longitude, latitude)
-
-        curs.execute("""
+        self.curs.execute("""
             SELECT wards.province, wards.municname, wards.ward_id 
             FROM wards, (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
             WHERE ST_DWithin(geom, poi, 1);""", poi
         )
 
         for row in curs.fetchall():
-            print("Full Address: %s" % address)
-            print("Coords: %f, %f" % (latitude, longitude))
-            print("Province: %s" % row[0])
-            print("Municipality: %s" % row[1])
-            print("Ward: %s" % row[2])
+            return {
+                "address" : address,
+                "coords" : poi,
+                "province" : row[0],
+                "municipality" : row[1],
+                "ward" : row[2],
+            }
+
+if __name__ == "__main__":
+    conn = psycopg2.connect(
+        database="wards", user="wards",
+        host="localhost", password="wards"
+    )
+    try:
+        curs = conn.cursor()
+        c = AddressConverter(curs)
+
+        while True:
+            address = raw_input("Enter in an address: ")
+            js = c.convert(address)
+            if not js:
+                print("Address: %s, could not be found" % address)
+                continue
+
+            print("Full Address: %s" % js["address"])
+            print("Coords: %f, %f" % js["coords"])
+            print("Province: %s" % js["province"])
+            print("Municipality: %s" % js["municipality"])
+            print("Ward: %s" % js["ward"])
             print("")
-finally:
-    conn.close()
+    finally:
+        conn.close()
