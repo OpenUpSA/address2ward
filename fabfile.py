@@ -3,7 +3,7 @@ import os
 import config
 
 def setup():
-    local("pip install -r requirements.txt") 
+    local("pip install -r requirements/base.txt") 
     if not os.path.exists("Wards.rar"):
         local("wget http://www.demarcation.org.za/Downloads/Boundary/Wards.rar")
 
@@ -16,3 +16,9 @@ def setup():
             server=config.host, database=config.database, user=config.user
         )
     )
+
+def setup_web():
+    local("pip install -r requirements/web.txt") 
+
+def run_web():
+    local("python web.py")
