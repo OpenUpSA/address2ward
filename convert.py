@@ -20,7 +20,7 @@ class AddressConverter(object):
             WHERE ST_DWithin(geom, poi, 1);""", poi
         )
 
-        for row in curs.fetchall():
+        for row in self.curs.fetchall():
             return {
                 "address" : address,
                 "coords" : poi,
