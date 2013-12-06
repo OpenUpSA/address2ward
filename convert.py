@@ -9,7 +9,7 @@ class AddressConverter(object):
         self.geolocator = GoogleV3()
         
     def convert(self, address):
-        result = self.geolocator.geocode(address)
+        result = self.geolocator.geocode(address, region="za")
         if not result: return None
 
         address, (latitude, longitude) = result
