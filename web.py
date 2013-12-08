@@ -1,7 +1,9 @@
 import json
 import psycopg2
 from flask import Flask
+from flask import Response
 from flask import request
+from flask import render_template
 from flask import g
 import config
 from convert import AddressConverter
@@ -38,26 +40,17 @@ def a2w():
     if address:
         js = get_converter().convert(address)
         js = js or {"error" : "address not found"}
-        return json.dumps(js, indent=4)
+        return Response(
+            response=json.dumps(js, indent=4), status=200, mimetype="application/json"
+        )
     else:
-        return """
-<html>
-<head><title>Address converter</title></head>
-<body>
-Use this API to look-up street addresses and find their wards
-as an example:
-
-For example, try:  <a href="/?address=12 Thicket St, Cape Town">12 Thicket street, Cape Town</a>
-</body>
-</html>
-"""
-
+        return render_template("search.html")
 
 if __name__ == "__main__":
     conn = get_connection()
     try:
         converter = AddressConverter(conn.cursor())
-        app.run(debug=False)
+        app.run(debug=True)
     finally:
         conn.close()
         
