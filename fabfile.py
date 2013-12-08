@@ -1,6 +1,9 @@
-from fabric.operations import local
+from fabric.operations import local, run
+from fabric import api
 import os
 import config
+
+api.env.hosts = ["adi@code4sa.org:2222"]
 
 def setup():
     local("pip install -r requirements/base.txt") 
@@ -22,3 +25,11 @@ def setup_web():
 
 def run_web():
     local("python web.py")
+
+def deploy():
+    with api.cd(config.code_dir):
+        api.run("git pull origin master")
+        api.run("%s install -r %s/requirements/web.txt --quiet" % (config.pip, config.code_dir))
+
+        api.sudo("supervisorctl restart wards")
+
