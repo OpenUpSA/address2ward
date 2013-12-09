@@ -10,25 +10,19 @@ from convert import AddressConverter
 
 app = Flask(__name__)
 
-connections = {}
-
 def get_connection(database):
-    if not database in connections:
-        connections[database] = psycopg2.connect(
+    return psycopg2.connect(
         database=config.database, user="wards",
         host="localhost", password="wards"
     )
-    return connections[database]
-
-def close_connections():
-    for key, val in connections.items():
-        val.close()
 
 def get_db(database):
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = get_connection(database)
-    return db
+    if not hasattr(g, "_connections"):
+        g._connections = {}
+
+    if not database in g._connections:
+        g._connections[database] = get_connection(database)
+    return g._connections[database]
 
 def get_converter(database):
     converter = getattr(g, '_converter', None)
@@ -38,9 +32,9 @@ def get_converter(database):
 
 @app.teardown_appcontext
 def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+    if hasattr(g, "_connections"):
+        for db in g._connections.values():
+            db.close()
 
 @app.route("/", methods=["GET"])
 def a2w():
@@ -62,5 +56,5 @@ if __name__ == "__main__":
         converter = AddressConverter(conn.cursor())
         app.run(debug=True)
     finally:
-        close_connections()
+        conn.close()
         
