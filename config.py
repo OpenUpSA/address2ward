@@ -1,4 +1,4 @@
-database = "wards_2006"
+database = "wards_2012"
 host = "localhost"
 user = "wards"
 password = "wards"

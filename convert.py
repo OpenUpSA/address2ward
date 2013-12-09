@@ -14,26 +14,32 @@ class AddressConverter(object):
 
         address, (latitude, longitude) = result
         poi = (longitude, latitude)
-        self.curs.execute("""
-            SELECT wards.province, wards.district, wards.municname, wards.ward_id, wards.ward_no
-            FROM {database} as wards, (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geom, poi, 1);""".format(database=config.database), poi
-        )
+        sql ="""
+            SELECT
+                province,
+                municname,
+                ward_id,
+                ward_no
+            FROM
+                {database} as wards,
+                (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
+            WHERE ST_DWithin(geom, poi, 1);""".format(database=config.database)
+
+        self.curs.execute(sql, poi)
 
         for row in self.curs.fetchall():
             return {
                 "address" : address,
                 "coords" : poi,
                 "province" : row[0],
-                "district" : row[1],
-                "municipality" : row[2],
-                "ward" : row[3],
-                "ward_no" : int(row[4]),
+                "municipality" : row[1],
+                "ward" : row[2],
+                "ward_no" : int(row[3]),
             }
 
 if __name__ == "__main__":
     conn = psycopg2.connect(
-        database="wards", user="wards",
+        database=config.database, user="wards",
         host="localhost", password="wards"
     )
     try:
