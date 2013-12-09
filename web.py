@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 def get_connection():
     return psycopg2.connect(
-        database="wards", user="wards",
+        database=config.database, user="wards",
         host="localhost", password="wards"
     )
 
