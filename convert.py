@@ -28,7 +28,7 @@ class AddressConverter(object):
                 "district" : row[1],
                 "municipality" : row[2],
                 "ward" : row[3],
-                "ward_no" : row[4],
+                "ward_no" : int(row[4]),
             }
 
 if __name__ == "__main__":
