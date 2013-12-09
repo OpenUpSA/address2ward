@@ -7,15 +7,10 @@ api.env.hosts = ["adi@code4sa.org:2222"]
 
 def setup():
     local("pip install -r requirements/base.txt") 
-    if not os.path.exists("Wards.rar"):
-        local("wget http://www.demarcation.org.za/Downloads/Boundary/Wards.rar")
-
-    if not os.path.exists("Wards2011.shp"):
-        local("rar x Wards.rar")
-
-    local("shp2pgsql -W latin1 Wards2011 wards > wards.sql".format(database=config.database))
+    if not os.path.exists("{database}.sql".format(database=config.database)):
+        local("wget http://wards.code4sa.org/static/{database}.sql".format(database=config.database))
     local(
-        "psql -h {server} -d {database} -U {user} -f wards.sql".format(
+        "cat {database}.sql | psql -h {server} -d {database} -U {user}".format(
             server=config.host, database=config.database, user=config.user
         )
     )

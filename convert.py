@@ -16,8 +16,8 @@ class AddressConverter(object):
         poi = (longitude, latitude)
         self.curs.execute("""
             SELECT wards.province, wards.district, wards.municname, wards.ward_id, wards.ward_no
-            FROM wards, (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geom, poi, 1);""", poi
+            FROM {database} as wards, (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
+            WHERE ST_DWithin(geom, poi, 1);""".format(database=config.database), poi
         )
 
         for row in self.curs.fetchall():
