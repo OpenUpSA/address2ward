@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 def get_connection(database):
     return psycopg2.connect(
-        database=config.database, user="wards",
+        database=database, user="wards",
         host="localhost", password="wards"
     )
 
@@ -39,7 +39,7 @@ def close_connection(exception):
 @app.route("/", methods=["GET"])
 def a2w():
     address = request.args.get("address")
-    database = request.args.get("address", config.database)
+    database = request.args.get("database", config.database)
     
     if address:
         js = get_converter(database).convert(address)
