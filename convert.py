@@ -9,23 +9,22 @@ class AddressConverter(object):
         self.curs = curs
         self.geolocator = GoogleV3()
         
-    def convert(self, address, database=None):
-        database = database or config.database
+    def convert(self, address):
         result = self.geolocator.geocode(address, region="za")
         if not result: return None
 
         address, (latitude, longitude) = result
         poi = (longitude, latitude)
-        sql ="""
+        sql = """
             SELECT
                 province,
                 municname,
                 ward_id,
                 ward_no
             FROM
-                {database} as wards,
+                wards,
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geom, poi, 1);""".format(database=database)
+            WHERE ST_DWithin(geom, poi, 1);"""
 
         self.curs.execute(sql, poi)
 
