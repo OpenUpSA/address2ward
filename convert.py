@@ -15,7 +15,7 @@ class AddressConverter(object):
         address, (latitude, longitude) = result
         poi = (longitude, latitude)
         self.curs.execute("""
-            SELECT wards.province, wards.municname, wards.ward_id 
+            SELECT wards.province, wards.district, wards.municname, wards.ward_id, wards.ward_no
             FROM wards, (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
             WHERE ST_DWithin(geom, poi, 1);""", poi
         )
@@ -25,8 +25,10 @@ class AddressConverter(object):
                 "address" : address,
                 "coords" : poi,
                 "province" : row[0],
-                "municipality" : row[1],
-                "ward" : row[2],
+                "district" : row[1],
+                "municipality" : row[2],
+                "ward" : row[3],
+                "ward_no" : row[4],
             }
 
 if __name__ == "__main__":
@@ -50,6 +52,7 @@ if __name__ == "__main__":
             print("Province: %s" % js["province"])
             print("Municipality: %s" % js["municipality"])
             print("Ward: %s" % js["ward"])
+            print("Ward No: %s" % js["ward_no"])
             print("")
     finally:
         conn.close()
