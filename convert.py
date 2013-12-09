@@ -3,12 +3,14 @@ from geopy.geocoders import GoogleV3
 import config
 import psycopg2
 
+default_db = "wards_2006"
 class AddressConverter(object):
     def __init__(self, curs):
         self.curs = curs
         self.geolocator = GoogleV3()
         
-    def convert(self, address):
+    def convert(self, address, database=None):
+        database = database or config.database
         result = self.geolocator.geocode(address, region="za")
         if not result: return None
 
@@ -23,7 +25,7 @@ class AddressConverter(object):
             FROM
                 {database} as wards,
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geom, poi, 1);""".format(database=config.database)
+            WHERE ST_DWithin(geom, poi, 1);""".format(database=database)
 
         self.curs.execute(sql, poi)
 

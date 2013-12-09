@@ -37,8 +37,10 @@ def close_connection(exception):
 @app.route("/", methods=["GET"])
 def a2w():
     address = request.args.get("address")
+    database = request.args.get("database", None)
+    
     if address:
-        js = get_converter().convert(address)
+        js = get_converter().convert(address, database)
         js = js or {"error" : "address not found"}
         return Response(
             response=json.dumps(js, indent=4), status=200, mimetype="application/json"
