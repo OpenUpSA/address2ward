@@ -2,6 +2,7 @@ from __future__ import print_function
 from geopy.geocoders import GoogleV3
 import config
 import psycopg2
+from datetime import datetime
 
 default_db = "wards_2006"
 class AddressConverter(object):
@@ -10,7 +11,9 @@ class AddressConverter(object):
         self.geolocator = GoogleV3()
         
     def convert(self, address):
+        now1 = datetime.now()
         result = self.geolocator.geocode(address, region="za")
+        now2 = datetime.now()
         if not result: return None
 
         address, (latitude, longitude) = result
@@ -27,6 +30,7 @@ class AddressConverter(object):
             WHERE ST_DWithin(geom, poi, 1);"""
 
         self.curs.execute(sql, poi)
+        now3 = datetime.now()
 
         for row in self.curs.fetchall():
             return {
@@ -36,6 +40,9 @@ class AddressConverter(object):
                 "municipality" : row[1],
                 "ward" : row[2],
                 "ward_no" : int(row[3]),
+                "now21" : str(now2 - now1),
+                "now32" : str(now3 - now2),
+                "now31" : str(now3 - now1),
             }
 
 if __name__ == "__main__":
