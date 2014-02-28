@@ -8,7 +8,7 @@ api.env.hosts = ["adi@code4sa.org:2222"]
 def setup():
     local("pip install -r requirements/base.txt") 
     if not os.path.exists("{database}.sql".format(database=config.database)):
-        local("wget http://wards.code4sa.org/static/{database}.sql".format(database=config.database))
+        local("wget http://wards.code4sa.org/static/sql/{database}.sql".format(database=config.database))
     local(
         "cat {database}.sql | psql -h {server} -d {database} -U {user}".format(
             server=config.host, database=config.database, user=config.user
