@@ -2,6 +2,7 @@ from __future__ import print_function
 import json
 from geopy.geocoders import GoogleV3
 import config
+from config import configuration
 import psycopg2
 from datetime import datetime
 from omgeo import Geocoder
@@ -20,7 +21,8 @@ class AddressConverter(object):
     def resolve_address_google(self, address):
         try:
             address = urllib.quote(address)
-            url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, config.google_key)
+            url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, configuration["environment"]["google_key"])
+            print(url)
             response = urllib2.urlopen(url)
             js = response.read()
             try:
@@ -111,9 +113,10 @@ class AddressConverter(object):
 
 
 if __name__ == "__main__":
+    db_config = configuration["databases"]["wards_2006"]
     conn = psycopg2.connect(
-        database=config.database, user=config.db_user,
-        host=config.db_host, password=config.db_password
+        database=db_config["database"], user=db_config["db_user"],
+        host=db_config["db_host"], password=db_config["db_password"]
     )
     try:
         curs = conn.cursor()

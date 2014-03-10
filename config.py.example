@@ -1,17 +1,24 @@
 import logging
-from logging.handlers import RotatingFileHandler
 import os
+from logging.handlers import RotatingFileHandler
 
-database = "wards_2006"
-db_host = "localhost"
-db_user = "wards"
-db_password = "wards"
-code_dir = "/var/www/wards.code4sa.org"
-env_dir = "/home/adi/.virtualenvs/a2w"
-python = "%s/bin/python" % env_dir
-pip = "%s/bin/pip" % env_dir
-google_key = "AIzaSyB70Y_kdJcaqKXPrRYXdkCGqWnNxC28LPE"
-
+configuration = {
+    "databases": {
+        "wards_2006" : {
+            "database" : "wards",
+            "db_host" : "localhost",
+            "db_user" : "<dbuser>",
+            "db_password" : "<dbpassword>",
+        },
+    }
+    "environment" : {
+        "code_dir" = "/var/www/wards.code4sa.org",
+        "env_dir" = "/home/adi/.virtualenvs/a2w",
+        "python" = "%s/bin/python" % env_dir,
+        "pip" = "%s/bin/pip" % env_dir,
+        "google_key" = "<google_key>"
+    }
+}
 
 # load log level from config
 LOG_LEVEL = logging.DEBUG

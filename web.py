@@ -5,15 +5,17 @@ from flask import Response
 from flask import request
 from flask import render_template
 from flask import g
-import config
+from config import configuration as config
 from convert import AddressConverter
 
 app = Flask(__name__)
 
 def get_connection(database):
+    db_config = config["databases"]["wards_2006"]
+    print db_config
     return psycopg2.connect(
-        database=database, user=config.db_user,
-        host=config.db_host, password=config.db_password
+        database=db_config["database"], user=db_config["db_user"],
+        host=db_config["db_host"], password=db_config["db_password"]
     )
 
 def get_db(database):
@@ -40,7 +42,7 @@ def close_connection(exception):
 @app.route("/", methods=["GET"])
 def a2w():
     address = request.args.get("address")
-    database = request.args.get("database", config.database)
+    database = request.args.get("database", config["databases"]["wards_2006"]["database"])
     
     if address:
         js = get_converter(database).convert_2006_wards(address)
@@ -52,7 +54,7 @@ def a2w():
         return render_template("search.html")
 
 if __name__ == "__main__":
-    conn = get_connection(config.database)
+    conn = get_connection(config["databases"]["wards_2006"]["database"])
     try:
         converter = AddressConverter(conn.cursor())
         app.run(debug=True)
