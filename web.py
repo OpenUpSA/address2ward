@@ -36,13 +36,14 @@ def close_connection(exception):
         for db in g._connections.values():
             db.close()
 
+@app.route("/wards/2006/", methods=["GET"])
 @app.route("/", methods=["GET"])
 def a2w():
     address = request.args.get("address")
     database = request.args.get("database", config.database)
     
     if address:
-        js = get_converter(database).convert(address)
+        js = get_converter(database).convert_2006_wards(address)
         js = js or {"error" : "address not found"}
         return Response(
             response=json.dumps(js, indent=4), status=200, mimetype="application/json"
@@ -51,7 +52,7 @@ def a2w():
         return render_template("search.html")
 
 if __name__ == "__main__":
-    conn = get_connection("wards_2006")
+    conn = get_connection(config.database)
     try:
         converter = AddressConverter(conn.cursor())
         app.run(debug=True)
