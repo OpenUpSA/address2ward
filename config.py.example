@@ -10,6 +10,12 @@ configuration = {
             "db_user" : "<dbuser>",
             "db_password" : "<dbpassword>",
         },
+        "police" : {
+            "database" : "police",
+            "db_host" : "localhost",
+            "db_user" : "<dbuser>",
+            "db_password" : "<dbpassword>",
+        },
     },
     "environment" : {
         "code_dir" : "/var/www/wards.code4sa.org",
