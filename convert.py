@@ -65,7 +65,7 @@ class AddressConverter(object):
                 province,
                 municname,
                 ward_id,
-                wardno
+                ward_no
             FROM
                 wards,
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
