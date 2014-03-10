@@ -52,33 +52,32 @@ class AddressConverter(object):
         longitude = candidate.x
 
         return address, latitude, longitude
-        
-    def convert(self, address):
-        now1 = datetime.now()
-        result = self.resolve_address_google(address)
-        if not result: return None
-        address, latitude, longitude = result
-        now2 = datetime.now()
 
-        poi = (longitude, latitude)
+    def convert_2006_wards(self, address):
+        now1 = datetime.now()
+        result = self.convert_address(address) 
+        now2 = datetime.now()
+        if not result: return None
+
         sql = """
             SELECT
                 province,
                 municname,
                 ward_id,
-                ward_no
+                wardno
             FROM
                 wards,
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geog, poi, 1);"""
+            WHERE ST_DWithin(geom, poi, 1);"""
 
-        self.curs.execute(sql, poi)
+        _, latitude, longitude = result
+        rows = self.convert_to_geography(sql, latitude, longitude)
         now3 = datetime.now()
 
-        for row in self.curs.fetchall():
+        for row in rows:
             return {
                 "address" : address,
-                "coords" : poi,
+                "coords" : (longitude, latitude),
                 "province" : row[0],
                 "municipality" : row[1],
                 "ward" : row[2],
@@ -87,6 +86,30 @@ class AddressConverter(object):
                 "now32" : str(now3 - now2),
                 "now31" : str(now3 - now1),
             }
+        
+    def convert_address(self, address):
+        """
+        Convert either None or 
+            - address
+            - latitude
+            - longitude
+
+        where address is a cleaned up version of the input value
+        """
+
+        result = self.resolve_address_google(address)
+        if not result: return None
+        address, latitude, longitude = result
+
+        return address, latitude, longitude        
+
+    def convert_to_geography(self, sql, latitude, longitude):
+        poi = (longitude, latitude)
+
+        self.curs.execute(sql, poi)
+
+        return self.curs.fetchall()
+
 
 if __name__ == "__main__":
     conn = psycopg2.connect(
@@ -99,7 +122,7 @@ if __name__ == "__main__":
 
         while True:
             address = raw_input("Enter in an address: ")
-            js = c.convert(address)
+            js = c.convert_2006_wards(address)
             if not js:
                 print("Address: %s, could not be found" % address)
                 continue
