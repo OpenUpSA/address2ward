@@ -10,7 +10,6 @@ import logging
 
 logger = logging.getLogger(config.LOGGER_NAME)
 
-default_db = "wards_2006"
 class AddressConverter(object):
     def __init__(self, curs):
         self.curs = curs
