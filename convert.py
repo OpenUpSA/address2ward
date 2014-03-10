@@ -22,7 +22,6 @@ class AddressConverter(object):
         try:
             address = urllib.quote(address)
             url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, configuration["environment"]["google_key"])
-            print(url)
             response = urllib2.urlopen(url)
             js = response.read()
             try:
@@ -54,40 +53,6 @@ class AddressConverter(object):
 
         return address, latitude, longitude
 
-    def convert_2006_wards(self, address):
-        now1 = datetime.now()
-        result = self.convert_address(address) 
-        now2 = datetime.now()
-        if not result: return None
-
-        sql = """
-            SELECT
-                province,
-                municname,
-                ward_id,
-                ward_no
-            FROM
-                wards,
-                (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geog, poi, 1);"""
-
-        _, latitude, longitude = result
-        rows = self.convert_to_geography(sql, latitude, longitude)
-        now3 = datetime.now()
-
-        for row in rows:
-            return {
-                "address" : address,
-                "coords" : (longitude, latitude),
-                "province" : row[0],
-                "municipality" : row[1],
-                "ward" : row[2],
-                "ward_no" : int(row[3]),
-                "now21" : str(now2 - now1),
-                "now32" : str(now3 - now2),
-                "now31" : str(now3 - now1),
-            }
-        
     def convert_address(self, address):
         """
         Convert either None or 
@@ -111,6 +76,65 @@ class AddressConverter(object):
 
         return self.curs.fetchall()
 
+class Ward2006AddressConverter(AddressConverter):
+    def convert(self, address):
+        now1 = datetime.now()
+        result = self.convert_address(address) 
+        now2 = datetime.now()
+        if not result: return None
+
+        sql = """
+            SELECT
+                province,
+                municname,
+                ward_id,
+                wards_no
+            FROM
+                wards,
+                (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
+            WHERE ST_DWithin(geog, poi, 1);"""
+
+        _, latitude, longitude = result
+        rows = self.convert_to_geography(sql, latitude, longitude)
+        now3 = datetime.now()
+
+        for row in rows:
+            return {
+                "address" : address,
+                "coords" : (longitude, latitude),
+                "province" : row[0],
+                "municipality" : row[1],
+                "ward" : row[2],
+                "wards_no" : int(row[3]),
+                "now21" : str(now2 - now1),
+                "now32" : str(now3 - now2),
+                "now31" : str(now3 - now1),
+            }
+
+
+class PoliceAddressConverter(AddressConverter):
+    def convert(self, address):
+        now1 = datetime.now()
+        result = self.convert_address(address) 
+        now2 = datetime.now()
+        if not result: return None
+
+        sql = """
+            SELECT
+                station
+            FROM
+                police,
+                (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
+            WHERE ST_DWithin(geog, poi, 1);"""
+
+        _, latitude, longitude = result
+        rows = self.convert_to_geography(sql, latitude, longitude)
+        now3 = datetime.now()
+
+        for row in rows:
+            return {
+                "station" : row[0],
+            }
 
 if __name__ == "__main__":
     db_config = configuration["databases"]["wards_2006"]
@@ -120,21 +144,16 @@ if __name__ == "__main__":
     )
     try:
         curs = conn.cursor()
-        c = AddressConverter(curs)
+        c = Ward2006AddressConverter(curs)
 
         while True:
             address = raw_input("Enter in an address: ")
-            js = c.convert_2006_wards(address)
+            js = c.convert(address)
             if not js:
                 print("Address: %s, could not be found" % address)
                 continue
 
-            print("Full Address: %s" % js["address"])
-            print("Coords: %f, %f" % js["coords"])
-            print("Province: %s" % js["province"])
-            print("Municipality: %s" % js["municipality"])
-            print("Ward: %s" % js["ward"])
-            print("Ward No: %s" % js["ward_no"])
+            print(js)
             print("")
     finally:
         conn.close()
