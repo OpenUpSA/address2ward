@@ -12,11 +12,11 @@ configuration = {
         },
     },
     "environment" : {
-        "code_dir" = "/var/www/wards.code4sa.org",
-        "env_dir" = "/home/adi/.virtualenvs/a2w",
-        "python" = "%s/bin/python" % env_dir,
-        "pip" = "%s/bin/pip" % env_dir,
-        "google_key" = "<google_key>"
+        "code_dir" : "/var/www/wards.code4sa.org",
+        "env_dir" : "/home/adi/.virtualenvs/a2w",
+        "python" : "%s/bin/python" % env_dir,
+        "pip" : "%s/bin/pip" % env_dir,
+        "google_key" : "<google_key>"
     }
 }
 
