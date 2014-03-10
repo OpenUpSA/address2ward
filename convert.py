@@ -69,7 +69,7 @@ class AddressConverter(object):
             FROM
                 wards,
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geom, poi, 1);"""
+            WHERE ST_DWithin(geog, poi, 1);"""
 
         _, latitude, longitude = result
         rows = self.convert_to_geography(sql, latitude, longitude)
