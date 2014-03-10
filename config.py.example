@@ -10,7 +10,7 @@ configuration = {
             "db_user" : "<dbuser>",
             "db_password" : "<dbpassword>",
         },
-    }
+    },
     "environment" : {
         "code_dir" = "/var/www/wards.code4sa.org",
         "env_dir" = "/home/adi/.virtualenvs/a2w",
