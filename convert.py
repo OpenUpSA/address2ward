@@ -30,13 +30,17 @@ class AddressConverter(object):
                 logger.exception("Error trying to resolve %s" % address)
                 return None
 
+            results = []
             if "results" in js and len(js["results"]) > 0:
-                result = js["results"][0]
-                geom = js["results"][0]["geometry"]["location"]
-                lat = geom["lat"]; lng = geom["lng"]   
-                formatted_address = result["formatted_address"]
+                for result in js["results"]:
+                    geom = result["geometry"]["location"]
+                    results.append({
+                        "lat" : geom["lat"],
+                        "lng" : geom["lng"],   
+                        "formatted_address" : result["formatted_address"]
+                    })
 
-                return formatted_address, lat, lng
+                return results
         except Exception:
             logger.exception("Error trying to resolve %s" % address)
         return None
@@ -54,20 +58,7 @@ class AddressConverter(object):
         return address, latitude, longitude
 
     def convert_address(self, address):
-        """
-        Convert either None or 
-            - address
-            - latitude
-            - longitude
-
-        where address is a cleaned up version of the input value
-        """
-
-        result = self.resolve_address_google(address)
-        if not result: return None
-        address, latitude, longitude = result
-
-        return address, latitude, longitude        
+        return self.resolve_address_google(address)
 
     def convert_to_geography(self, sql, latitude, longitude):
         poi = (longitude, latitude)
@@ -77,47 +68,51 @@ class AddressConverter(object):
         return self.curs.fetchall()
 
 class Ward2006AddressConverter(AddressConverter):
-    def convert(self, address):
+    def convert(self, address, multiple=False):
         now1 = datetime.now()
-        result = self.convert_address(address) 
+        results = self.convert_address(address) 
         now2 = datetime.now()
-        if not result: return None
+        if not results: return None
 
         sql = """
             SELECT
                 province,
                 municname,
                 ward_id,
-                wards_no
+                ward_no
             FROM
                 wards,
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
             WHERE ST_DWithin(geog, poi, 1);"""
 
-        _, latitude, longitude = result
-        rows = self.convert_to_geography(sql, latitude, longitude)
-        now3 = datetime.now()
+        wards = []
 
-        for row in rows:
-            return {
-                "address" : address,
-                "coords" : (longitude, latitude),
-                "province" : row[0],
-                "municipality" : row[1],
-                "ward" : row[2],
-                "wards_no" : int(row[3]),
-                "now21" : str(now2 - now1),
-                "now32" : str(now3 - now2),
-                "now31" : str(now3 - now1),
-            }
+        for result in results:
+            rows = self.convert_to_geography(sql, result["lat"], result["lng"])
+            now3 = datetime.now()
 
+            for row in rows:
+                wards.append({
+                    "address" : address,
+                    "coords" : (result["lat"], result["lng"]),
+                    "province" : row[0],
+                    "municipality" : row[1],
+                    "ward" : row[2],
+                    "wards_no" : int(row[3]),
+                    "now21" : str(now2 - now1),
+                    "now32" : str(now3 - now2),
+                    "now31" : str(now3 - now1),
+                })
+
+        if not multiple: return wards[0]
+        return wards
 
 class PoliceAddressConverter(AddressConverter):
-    def convert(self, address):
+    def convert(self, address, multiple=False):
         now1 = datetime.now()
-        result = self.convert_address(address) 
+        results = self.convert_address(address) 
         now2 = datetime.now()
-        if not result: return None
+        if not results: return None
 
         sql = """
             SELECT
@@ -127,14 +122,16 @@ class PoliceAddressConverter(AddressConverter):
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
             WHERE ST_DWithin(geog, poi, 1);"""
 
-        _, latitude, longitude = result
-        rows = self.convert_to_geography(sql, latitude, longitude)
-        now3 = datetime.now()
+        stations = []
+        for result in results:
+            rows = self.convert_to_geography(sql, result["lat"], result["lng"])
+            now3 = datetime.now()
 
-        for row in rows:
-            return {
-                "station" : row[0],
-            }
+            for row in rows:
+                stations.append({ "station" : row[0] })
+
+        if not multiple: return stations[0]
+        return stations
 
 if __name__ == "__main__":
     db_config = configuration["databases"]["wards_2006"]
@@ -148,7 +145,7 @@ if __name__ == "__main__":
 
         while True:
             address = raw_input("Enter in an address: ")
-            js = c.convert(address)
+            js = c.convert(address, multiple=True)
             if not js:
                 print("Address: %s, could not be found" % address)
                 continue
@@ -157,3 +154,8 @@ if __name__ == "__main__":
             print("")
     finally:
         conn.close()
+
+converters = {
+    "wards_2006" : Ward2006AddressConverter,
+    "police" : PoliceAddressConverter,
+}

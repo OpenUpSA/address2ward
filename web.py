@@ -6,13 +6,19 @@ from flask import request
 from flask import render_template
 from flask import g
 from config import configuration as config
-from convert import AddressConverter
+#from convert import AddressConverter, Ward2006AddressConverter
+from convert import converters
 
 app = Flask(__name__)
 
+class UnknownDatabaseException(Exception):
+    pass
+
 def get_connection(database):
-    db_config = config["databases"]["wards_2006"]
-    print db_config
+    if not database in config["databases"]:
+        raise UnknownDatabaseException("Could not find database: %s in configuration" % database)
+
+    db_config = config["databases"][database]
     return psycopg2.connect(
         database=db_config["database"], user=db_config["db_user"],
         host=db_config["db_host"], password=db_config["db_password"]
@@ -29,7 +35,8 @@ def get_db(database):
 def get_converter(database):
     converter = getattr(g, '_converter', None)
     if converter is None:
-        converter = g._converter = AddressConverter(get_db(database).cursor())
+        converter_class = converters[database]
+        converter = g._converter = converter_class(get_db(database).cursor())
     return converter
 
 @app.teardown_appcontext
@@ -43,9 +50,12 @@ def close_connection(exception):
 def a2w():
     address = request.args.get("address")
     database = request.args.get("database", config["databases"]["wards_2006"]["database"])
+    multiple = request.args.get("multiple", False)
+    if multiple.lower() == "true": multiple = True
     
     if address:
-        js = get_converter(database).convert_2006_wards(address)
+        curs = get_connection(database).cursor()
+        js = get_converter(database).convert(address, multiple)
         js = js or {"error" : "address not found"}
         return Response(
             response=json.dumps(js, indent=4), status=200, mimetype="application/json"
@@ -56,7 +66,6 @@ def a2w():
 if __name__ == "__main__":
     conn = get_connection(config["databases"]["wards_2006"]["database"])
     try:
-        converter = AddressConverter(conn.cursor())
         app.run(debug=True)
     finally:
         conn.close()
