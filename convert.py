@@ -68,7 +68,7 @@ class AddressConverter(object):
         return self.curs.fetchall()
 
 class Ward2006AddressConverter(AddressConverter):
-    def convert(self, address, multiple=False):
+    def convert(self, address):
         now1 = datetime.now()
         results = self.convert_address(address) 
         now2 = datetime.now()
@@ -104,11 +104,10 @@ class Ward2006AddressConverter(AddressConverter):
                     "now31" : str(now3 - now1),
                 })
 
-        if not multiple: return wards[0]
         return wards
 
 class PoliceAddressConverter(AddressConverter):
-    def convert(self, address, multiple=False):
+    def convert(self, address):
         now1 = datetime.now()
         results = self.convert_address(address) 
         now2 = datetime.now()
@@ -130,7 +129,6 @@ class PoliceAddressConverter(AddressConverter):
             for row in rows:
                 stations.append({ "station" : row[0] })
 
-        if not multiple: return stations[0]
         return stations
 
 if __name__ == "__main__":
@@ -145,7 +143,7 @@ if __name__ == "__main__":
 
         while True:
             address = raw_input("Enter in an address: ")
-            js = c.convert(address, multiple=True)
+            js = c.convert(address)
             if not js:
                 print("Address: %s, could not be found" % address)
                 continue

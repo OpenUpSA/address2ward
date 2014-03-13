@@ -50,12 +50,10 @@ def close_connection(exception):
 def a2w():
     address = request.args.get("address")
     database = request.args.get("database", config["databases"]["wards_2006"]["database"])
-    multiple = request.args.get("multiple", False)
-    if multiple.lower() == "true": multiple = True
     
     if address:
         curs = get_connection(database).cursor()
-        js = get_converter(database).convert(address, multiple)
+        js = get_converter(database).convert(address)
         js = js or {"error" : "address not found"}
         return Response(
             response=json.dumps(js, indent=4), status=200, mimetype="application/json"
