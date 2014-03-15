@@ -21,7 +21,6 @@ class AddressConverter(object):
             js = response.read()
             try:
                 js = json.loads(js)
-                #print(js)
             except ValueError:
                 logger.exception("Error trying to resolve %s" % address)
                 return None
@@ -86,10 +85,9 @@ class Ward2006AddressConverter(AddressConverter):
         for result in results:
             rows = self.convert_to_geography(sql, result["lat"], result["lng"])
             now3 = datetime.now()
-
             for row in rows:
                 wards.append({
-                    "address" : address,
+                    "address" : result["formatted_address"],
                     "coords" : (result["lat"], result["lng"]),
                     "province" : row[0],
                     "municipality" : row[1],
@@ -123,7 +121,11 @@ class PoliceAddressConverter(AddressConverter):
             now3 = datetime.now()
 
             for row in rows:
-                stations.append({ "station" : row[0] })
+                stations.append({
+                    "station" : row[0],
+                    "address" : result["formatted_address"],
+                    "coords" : (result["lat"], result["lng"]),
+                })
 
         return stations
 
@@ -148,12 +150,13 @@ class VD2014Converter(AddressConverter):
             now3 = datetime.now()
 
             for row in rows:
-                print row
                 vds.append({
                     "voting_district" : str(row[0]),
                     "ward" : str(row[1]),
                     "municipality" : str(row[2]),
                     "province" : str(row[3]),
+                    "address" : result["formatted_address"],
+                    "coords" : (result["lat"], result["lng"]),
                 })
 
         return vds
