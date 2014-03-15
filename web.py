@@ -7,7 +7,7 @@ from flask import render_template
 from flask import g
 from config import configuration as config
 #from convert import AddressConverter, Ward2006AddressConverter
-from convert import converters
+from converters import converters
 
 app = Flask(__name__)
 
@@ -49,10 +49,9 @@ def close_connection(exception):
 @app.route("/", methods=["GET"])
 def a2w():
     address = request.args.get("address")
-    database = request.args.get("database", config["databases"]["wards_2006"]["database"])
+    database = request.args.get("database", "wards_2006")
     
     if address:
-        curs = get_connection(database).cursor()
         js = get_converter(database).convert(address)
         js = js or {"error" : "address not found"}
         return Response(
@@ -62,9 +61,5 @@ def a2w():
         return render_template("search.html")
 
 if __name__ == "__main__":
-    conn = get_connection(config["databases"]["wards_2006"]["database"])
-    try:
-        app.run(debug=True)
-    finally:
-        conn.close()
+    app.run(debug=True)
         
