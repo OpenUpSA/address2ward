@@ -138,11 +138,16 @@ class VD2014Converter(AddressConverter):
 
         sql = """
             SELECT
-                vd_id, ward_id, munic_id, province
+                vd.vd_id, vd.ward_id, vd.munic_id, vd.province,
+                vs.province, vs.municipali, vs.ward_id,
+                vs.sstreetvil, vs.ssuburbadm, vs.stowntriba, vs.svs_type,
+                vs.latitude, vs.longitude, vs.svs_name
             FROM
-                vd_2014,
+                vd_2014 vd
+                INNER JOIN vs_2014 vs on vd.vd_id = vs.vd_id,
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geog, poi, 1);"""
+            WHERE ST_DWithin(vd.geog, poi, 1);"""
+
 
         vds = []
         for result in results:
@@ -157,6 +162,7 @@ class VD2014Converter(AddressConverter):
                     "province" : str(row[3]),
                     "address" : result["formatted_address"],
                     "coords" : (result["lat"], result["lng"]),
+                    "voting_station" : str(row[13]).title(),
                 })
 
         return vds
