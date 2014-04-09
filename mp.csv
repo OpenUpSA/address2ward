@@ -1,6 +1,6 @@
 MP_NAME
 Kliprand
-Matzikama NU
+Matzikama 
 Rietpoort
 Bitterfontein
 Nuwerus
@@ -13,14 +13,14 @@ Strandfontein
 Klawer
 Doringbaai
 Lamberts Bay
-Cederberg NU
+Cederberg 
 Graafwater
 Clanwilliam
 Leipoldtville
 Elands Bay
 Citrusdal
 Redelinghuys
-Bergrivier NU
+Bergrivier 
 Eendekuil
 Dwarskersbos
 Aurora
@@ -33,7 +33,7 @@ Wittewater
 Porterville
 De Lust
 St Helena Bay
-Saldanha Bay NU
+Saldanha Bay 
 Paternoster
 Vredenburg
 Swartriet
@@ -50,7 +50,7 @@ Skaapeliland
 Klein Eiland
 Vondelingeiland
 Koringberg
-Swartland NU
+Swartland 
 Klipfontyn
 Moorreesburg
 Rosenhof
@@ -71,7 +71,7 @@ Grotto Bay
 Greater Chatsworth
 Chatsworth
 Kalbaskraal
-Witzenberg NU
+Witzenberg 
 Op-die-berg
 Meulstroom
 Tulbagh
@@ -83,7 +83,7 @@ Wolseley
 Pine Valley
 Montana
 Saron
-Drakenstein NU
+Drakenstein 
 Gouda
 Onverwacht
 Wellington
@@ -94,7 +94,7 @@ Val De Vie
 Water-Vliet
 Victor Verster
 Klapmuts
-Stellenbosch NU
+Stellenbosch 
 Elsenburg
 De Hollandsche
 Koelenhof
@@ -123,7 +123,7 @@ Lynedoch
 Raithby
 Stellenbosch Rural
 Touwsrivier
-Breede Valley NU
+Breede Valley 
 De Doorns
 Hassie Square
 Ekupumeleni
@@ -132,7 +132,7 @@ Worcester
 Rawsonville
 Brandvlei
 Montagu
-Langeberg NU
+Langeberg 
 Robertson
 Nkqubela
 Zolani
@@ -140,14 +140,14 @@ Ashton
 Bonnievale
 Mcgregor
 Barrydale
-Swellendam NU
+Swellendam 
 Suurbraak
 Buffelsjagrivier
 Swellendam
 Malgas
 Infanta
 Villiersdorp
-Theewaterskloof NU
+Theewaterskloof 
 Hottentots Holland Nature Reserve
 Genadendal
 Dennehof
@@ -162,7 +162,7 @@ Lebanon
 Highlands
 Kogelberg
 Betty's Bay
-Overstrand NU
+Overstrand 
 Rooiels
 Arabella Country Estate
 Paarde Poort
@@ -185,7 +185,7 @@ Baardscheerders Bosch
 Pearly Beach
 Wolvengat
 Napier
-Cape Agulhas NU
+Cape Agulhas 
 Bredasdorp
 Elim
 Arniston
@@ -331,12 +331,12 @@ Ncekane
 Suiderstrand
 Ladismith
 Nissenville
-Kannaland NU
+Kannaland 
 Zoar
 Calitzdorp
 Van Wyksdorp
 Riversdale
-Hessequa NU
+Hessequa 
 Heidelberg
 Slangrivier
 Albertinia
@@ -348,7 +348,7 @@ Port Beaufort
 Groot Jongensfontein
 Ruitersbos State Forest
 Jonkersberg State Forest
-Mossel Bay NU
+Mossel Bay 
 Friemersheim
 Herbertsdale
 Groot Brakrivier
@@ -370,7 +370,7 @@ Springerbaai
 Boggoms Bay
 Vlees Bay
 Swartberg State Forest
-George NU
+George 
 Formosa State Forest
 Uniondale
 Haarlem
@@ -380,14 +380,14 @@ Wilderness
 Wilderness Lake Area
 Herolds Bay
 De Rust
-Oudtshoorn NU
+Oudtshoorn 
 Dysselsdorp
 Oudtshoorn
 Bongolethu
 Bridgeton
 De Hoop
 Armoed
-Bitou NU
+Bitou 
 Kurland
 Nature's Valley
 Keurboomstrand
@@ -399,7 +399,7 @@ Plettenberg Bay
 Kranshoek
 Bosluiskop
 Karatara
-Knysna NU
+Knysna 
 Rheenendal
 Swartvlei
 Phantom Pass
@@ -409,18 +409,18 @@ Myoli Beach
 Knysna
 Goukamma Nature Reserve
 Buffelsbaai
-Laingsburg NU
+Laingsburg 
 Laingsburg
 Matjiesfontein
 Bitterwater
 Leeu Gamka
-Prince Albert NU
+Prince Albert 
 Prince Albert
 Klaarstroom
 Murraysburg
 Rooivlakte
 Nelspoort
-Beaufort West NU
+Beaufort West 
 Beaufort West
 New Town
 Kwa-Mandlenkosi
@@ -434,7 +434,7 @@ Cape Farms
 Philadelphia
 Melkbosstrand
 Klipheuwel
-Cape Town NU
+Cape Town 
 Durhamville
 Fistantekraal
 Robben Island
@@ -518,7 +518,7 @@ Arena
 Yellowsands
 Ngqolosa
 Upper Ngqolosa
-Amahlathi NU
+Amahlathi 
 eJojweni A
 KwaJimi
 Cengu
@@ -602,7 +602,7 @@ Helderberg Nature Reserve
 Somerset West
 Nomzamo
 Strand
-City of Cape Town NU
+City of Cape Town 
 Hottentots Holland Nature Reserve
 Muizenberg
 Noordhoek
@@ -622,7 +622,7 @@ Ngingiqini
 Nkqonkqweni A
 Mtshonyaneni
 KwaNdayi
-Buffalo City NU
+Buffalo City 
 Mdange
 Tukayi B
 eDrayini
@@ -777,7 +777,7 @@ Zikova
 Ngqinisa
 Lujiza
 Nieu Bethesda
-Camdeboo NU
+Camdeboo 
 Graaff Reinet
 uMasizakhe
 Aberdeen
@@ -788,15 +788,15 @@ Khanyiso
 Somerset East
 KwaNojoli
 Cookhouse
-Blue Crane Route NU
+Blue Crane Route 
 Jansenville
 KwaZamukucinga
-Ikwezi NU
+Ikwezi 
 Klipplaat
 Wongalethu
 Waterford
 Riebeeck East
-Makana NU
+Makana 
 Rhini
 Grahamstown
 Alicedale
@@ -804,7 +804,7 @@ KwaNonzwakazi
 Sidbury
 Bathurst
 Nolukhanyo
-Ndlambe NU
+Ndlambe 
 Seafield
 Kleinemonde
 Nkwenkwezi
@@ -817,7 +817,7 @@ Kenton on Sea
 Boknes Strand
 Canon Rocks
 Kirkwood
-Sundays River Valley NU
+Sundays River Valley 
 Enon
 Bontrug
 Barsheba
@@ -826,12 +826,12 @@ KwaZenzele
 Nomathamasanqa
 Addo
 Rietbron
-Baviaans NU
+Baviaans 
 Willowmore
 Steytlerville
 Vuyolwetho
 Patensie
-Kouga NU
+Kouga 
 Hankey
 Loerieheuwel
 Thornhill
@@ -844,7 +844,7 @@ St Francis Bay
 Oyster Bay
 Cape St Francis
 Misgund
-Kou-Kamma NU
+Kou-Kamma 
 Louterwater
 Krakeel River
 Joubertina
@@ -859,7 +859,7 @@ Tsitsikamma National Park
 Woodlands
 Clarkson
 KuMcuba
-Mbhashe NU
+Mbhashe 
 KuMbanga A
 Singeni B
 eNdulini B
@@ -1346,7 +1346,7 @@ Pitseng
 Lejwaneng
 Thembalihle
 Vrede
-Phumelela NU
+Phumelela 
 Memel
 Zamani
 Zenzeleni
@@ -1760,7 +1760,7 @@ Nkawukazi B
 Dimbeni
 KuLojingqi
 eMahlubini B
-Mnquna NU
+Mnquna 
 eNgxalawe
 eNtlekiseni
 Mazamisa AA
@@ -2419,7 +2419,7 @@ Qolora Mouth
 KwaMazinyo
 KwaVuka
 Komga
-Great Kei NU
+Great Kei 
 Cwili
 Kei Mouth
 Manqukela
@@ -2567,7 +2567,7 @@ Ngcamngeni
 Madubela
 Debe Nek
 Ngqwele
-Ngqushwa NU
+Ngqushwa 
 Bhele
 Dubu
 KwaMasele
@@ -2683,7 +2683,7 @@ KwaMaxwayana
 Prudhoe
 Gribaltar Rock
 Glencairn
-Nkonkobe NU
+Nkonkobe 
 Cairns
 Glenmore
 Otterburn
@@ -2841,18 +2841,18 @@ Nqcabasa
 Qutubeni
 Qamdobowa
 Zalaza
-Nxuba NU
+Nxuba 
 Bedford
 Nonzwakazi
 Nyara
 Adelaide
 Lingelethu
 Middelburg
-Inxuba Yethemba NU
+Inxuba Yethemba 
 Cradock
 Hofmeyr
 Luxolweni
-Tsolwana NU
+Tsolwana 
 Hopefield
 Thorneycroft
 Prospect
@@ -2867,11 +2867,11 @@ Phelandaba
 Kwezi
 Tsolwana
 Molteno
-Inkwanca NU
+Inkwanca 
 Sterkstroom
 Masakhe
 Ndumangeni
-Lukhanji NU
+Lukhanji 
 Nkonkobe
 Gcina-L
 Gcina-P
@@ -2948,7 +2948,7 @@ Muswa-C
 Mtwakazi-A
 Mtwakazi-B
 Maqwateni
-Intsika Yethu NU
+Intsika Yethu 
 Mhlonyaneni
 Bukwana
 eLeni
@@ -3253,7 +3253,7 @@ Mbulukweza
 Gugwana
 Dordrecht
 Tjoksville
-eMalahleni NU
+eMalahleni 
 Spongweni
 Emayaluleni
 eNtlanjeni
@@ -3420,7 +3420,7 @@ eMazimeni
 Nqancule
 Mdeni D
 Singcukeni
-Engcobo NU
+Engcobo 
 Singqumeni B
 Gubenxa
 Lixeni A
@@ -3605,7 +3605,7 @@ KwaSibonda
 eJojweni A
 Ndaba
 Elliot
-Sakhisizwe NU
+Sakhisizwe 
 KuZikhonkwane
 uLahlangubo
 Sdakeni
@@ -4064,7 +4064,7 @@ Santyeni
 Ndambane
 Lokishini
 HaSefoko
-Elundini NU
+Elundini 
 Koebung
 Seqhobong
 Thoteng
@@ -4243,7 +4243,7 @@ Ntatyana
 Mabalana
 N'Dofela
 Bikizana
-Senqu NU
+Senqu 
 Mboleni
 Mdaweni
 Sqitini
@@ -4313,12 +4313,12 @@ Barkly East
 Rossouw
 Dukathole
 Aliwal North
-Maletswai NU
+Maletswai 
 Jamestown
 Oviston
 Venterstad
 Nozizwe
-Gariep NU
+Gariep 
 Burgersdorp
 Mzamomhle
 Tembisa
@@ -4326,7 +4326,7 @@ Khayamnandi
 Steynsburg
 Bhungeni
 Lwandlana A
-Ngquza Hill NU
+Ngquza Hill 
 Magqabesi
 Mbofu
 Mataleni
@@ -4616,7 +4616,7 @@ Mbotyi
 Goso
 Mpenkulu
 Mthinde
-Port St Johns NU
+Port St Johns 
 Mboziseni
 Kwamlaza
 Kwaphephu
@@ -4837,7 +4837,7 @@ Vithini
 Nkonkoni
 Thambana
 Mpindweni
-Nyandeni NU
+Nyandeni 
 Lotana
 Bovini
 Mjaliswa
@@ -5111,7 +5111,7 @@ Mngcibe
 Sidabadabeni
 Nayval
 Ndlungwana
-Mhlontlo NU
+Mhlontlo 
 Khubusi
 Gqwesa
 Emankuleni
@@ -5355,7 +5355,7 @@ eGotyibeni
 Lower Gungululu
 KwaMbango
 Ngqwala B
-King Sabata Dalindyebo NU
+King Sabata Dalindyebo 
 KuGwitya
 KuNongcwengana
 Kambi
@@ -5706,7 +5706,7 @@ Kuze
 KaMagwashu
 Cekeza
 Nkoneni
-UMuziwabantu NU
+UMuziwabantu 
 Mnkangala
 Bozana
 Esikhulu
@@ -5761,7 +5761,7 @@ Maqomgoo
 White City
 Cabazini
 Esitingini
-Mkhambathini NU
+Mkhambathini 
 KwaZiba
 Mdlelanto
 Ziba
@@ -5773,7 +5773,7 @@ Mvoti
 Njengabantu
 Mhlangandlovu
 Holspruit B
-eDumbe NU
+eDumbe 
 Msizini
 Gunstelling
 Krommellenboog
@@ -5809,7 +5809,7 @@ Mathonsi
 Endlondlweni
 Sundumbili A
 Mandeni
-Mandeni NU
+Mandeni 
 Nyoni
 Otungulu
 Macambini
@@ -5819,7 +5819,7 @@ Mtunzini
 Tugela
 Tugela Mouth
 Sans Souci
-KwaDukuza NU
+KwaDukuza 
 Doornkop
 Mdlebeni
 Anmaharai
@@ -6050,7 +6050,7 @@ KwaManzi
 Mampola
 Nkawulweni A
 Zwelitsha
-Matatiele NU
+Matatiele 
 Pote
 Bovini
 Ngwenwane
@@ -6315,7 +6315,7 @@ Mjoja
 Gugwini
 Mandileni
 Madlangeni
-Umzimvubu NU
+Umzimvubu 
 Upper Mnyamana
 Kinira
 Mdakeni
@@ -6533,7 +6533,7 @@ Nyegqihi
 Zimito
 Lucingweni C
 Goxe A
-Mbizana NU
+Mbizana 
 Goxe C
 Mpeni
 Nqutu A
@@ -6863,7 +6863,7 @@ Phepheni
 Tshingwana
 Mpelazwe
 Ezihewuleni
-Ntabankulu NU
+Ntabankulu 
 Mlambondaba
 Ntshangwe
 Mruleni
@@ -6993,7 +6993,7 @@ Dungu
 Mpoza
 Ntlangano
 Colchester
-Nelson Mandela Bay NU
+Nelson Mandela Bay 
 Uitenhage
 Despatch
 iBhayi
@@ -7005,7 +7005,7 @@ Woodridge
 Blue Horizon Bay
 Clarendon Marine
 Heuningvlei
-Moshaweng NU
+Moshaweng 
 Tsoe
 Tsilwana
 Bareki
@@ -7122,7 +7122,7 @@ Manyeding
 Mahukubung
 Ga-Masepa
 Sedibeng
-Ga-Segonyana NU
+Ga-Segonyana 
 Ga-Motsamai
 Piet se Bos
 Gamopedi
@@ -7155,12 +7155,12 @@ Kollie
 Ga-Motshwaedi
 Januariestat
 Dibeng
-Gamagara NU
+Gamagara 
 Kathu
 Sishen
 Olifantshoek
 Sendelingsdrif
-Richtersveld NU
+Richtersveld 
 Richtersveld
 Sanddrif
 Khubus
@@ -7171,7 +7171,7 @@ Lekkersing
 Muisvlakte
 Port Nolloth
 Kotzehoop
-Nama Khoi NU
+Nama Khoi 
 Vioolsdrift
 Goodhouse
 Steinkopf
@@ -7185,7 +7185,7 @@ Springbok
 Carolusberg
 Komaggas
 Kamassies
-Kamiesberg NU
+Kamiesberg 
 Rooifontein
 Soebatsfontein
 Koingnaas
@@ -7202,23 +7202,23 @@ Klipfontein
 Garies
 Lepelsfontein
 Brandvlei
-Hantam NU
+Hantam 
 Loeriesfontein
 Nieuwoudtville
 Calvinia
 Tankwa-Karoo National Park
 Williston
-Karoo Hoogland NU
+Karoo Hoogland 
 Frasersburg
 Sutherland
 Onseepkans
-Kh�i-Ma NU
+Kh�i-Ma 
 Witbank
 Pella
 Pofadder
 Aggeneys
 Merriman
-Ubuntu NU
+Ubuntu 
 Richmond
 Sabelo
 Victoria West
@@ -7226,44 +7226,44 @@ Loxton
 Hutchinson
 Norvalspont
 Masizakhe
-Umsobomvu NU
+Umsobomvu 
 Colesberg
 Noupoort
 Kwazamuxolo
 Mziwabantu
 Britstown
-Emthanjeni NU
+Emthanjeni 
 De Aar
 Nonzwakazi
 Hanover
 Van Wyksvlei
-Kareeberg NU
+Kareeberg 
 Vosburg
 Carnavon
 Vanderkloof
 Rolfontein
 Petrusville
-Renosterberg NU
+Renosterberg 
 Phillipstown
 Hopetown
-Thembelihle NU
+Thembelihle 
 Orania
 Strydenburg
 Niekerkshoop
-Siyathemba NU
+Siyathemba 
 Westerberg
 Marydale
 Prieska
 Copperton
 Schmidtsdrif
-Siyancuma NU
+Siyancuma 
 Campbell
 Griekwastad
 Douglas
 Riet River
 Belmont
 Kalahari Gemsbok National Park
-Mier NU
+Mier 
 Mier
 Loubos
 Klein Mier
@@ -7273,7 +7273,7 @@ Askham
 Augrabies Falls National Park
 Riemvasmaak
 Asbosknop
-Kai !Garib NU
+Kai !Garib 
 Rooirant
 Bloemsmond
 Augrabies Mission
@@ -7291,7 +7291,7 @@ Lutzburg
 Alheit
 Kakamas
 Kenhardt
-Khara Hais NU
+Khara Hais 
 Upington
 Paballelo
 Leerkrans
@@ -7304,29 +7304,29 @@ Louisvale
 Eldansrus
 Raaswater
 Grootdrink
-!Kheis NU
+!Kheis 
 Gannaput
 Wegdraai
 Groblershoop
 Boegoeberg
-Tsantsabane NU
+Tsantsabane 
 Glosam
 Goedgedacht
 Groenwater
 Postmansburg
 Danielskuil
-Kgatelopele NU
+Kgatelopele 
 Owendale
 Lime Acres
 Vaalbos National Park
-Sol Plaatjie NU
+Sol Plaatjie 
 Roodepan
 Platfontein
 Galeshewe
 Kimberley
 Ritchie
 Motswedimosa
-Dikgatlong NU
+Dikgatlong 
 Windsorton
 Kutlwano
 Ulco
@@ -7343,9 +7343,9 @@ Mataleng
 Pniel Estate
 Ikhutseng
 Warrenton
-Magareng NU
+Magareng 
 Banksdrif
-Phokwane NU
+Phokwane 
 Hartswater
 Pampierstad
 Jan Kempdorp
@@ -7353,14 +7353,14 @@ Ganspan
 Ratanang
 Jacobsdal
 Riet River
-Letsemeng NU
+Letsemeng 
 Petrusburg
 Oppermans
 Koffiefontein
 Luckhoff
 Matoporong
 Reddersburg
-Kopanong NU
+Kopanong 
 Edenburg
 Ha-Rasebei
 Ipopeng
@@ -7380,7 +7380,7 @@ Lephoi
 Gariep Dam Nature Reserve
 Gariepdam
 Smithfield
-Mohokare NU
+Mohokare 
 Mofulatshepe
 Matlakeng
 Zastron
@@ -7388,14 +7388,14 @@ Roleleathunya
 Rouxville
 Goedemoed
 Dewetsdorp
-Naledi NU
+Naledi 
 Wepener
 Qibing
 Thapelang
 Vanstadensrus
 Theunissen
 Masilo
-Masilonyana NU
+Masilonyana 
 Winburg
 Makeleketle
 Majemasweu
@@ -7405,19 +7405,19 @@ Verkeerdevlei
 Tshepong
 Malebogo
 Hertzogville
-Tokologo NU
+Tokologo 
 Boshof
 Seretse
 Dealesville
 Sandveld
 Hoopstad
 Tikwana
-Tswelopele NU
+Tswelopele 
 Bultfontein
 Phahameng
 Allanridge
 Phathakahle
-Matjhabeng NU
+Matjhabeng 
 Odendaalsrus
 Kutloanong
 Riebeeckstad
@@ -7436,12 +7436,12 @@ Blaauwdrift
 Virginia Mine
 Bothaville
 Kgotsong
-Nala NU
+Nala 
 Balkfontein
 Monyakeng
 Wesselbron
 Setsoto
-Setsoto NU
+Setsoto 
 Senekal
 Matwabeng
 Marquard
@@ -7455,7 +7455,7 @@ Thorisong
 Vuka
 Old Location
 Bethlehem
-Dihlabeng NU
+Dihlabeng 
 Paul Roux
 Fateng Tse Ntsho
 Rosendal
@@ -7466,7 +7466,7 @@ Mashaeng
 Fouriesburg
 Petrus Steyn
 Mamafubedu
-Nketoana NU
+Nketoana 
 Reitz
 Petsana
 Ntha
@@ -7474,7 +7474,7 @@ Lindley
 Leratswana
 Arlington
 Harrismith
-Maluti A Phofung NU
+Maluti A Phofung 
 Tshiame
 Glen Lenie
 Kestell
@@ -7523,7 +7523,7 @@ Dabangu
 KwaCebelele
 Ndaleni
 Kupholeni
-Indaka NU
+Indaka 
 Dival
 Ekuvukeni
 Namakazi
@@ -7563,13 +7563,13 @@ Cancele
 Rietvallei
 Bhongweni
 Randfontein
-Randfontein NU
+Randfontein 
 Mohlakeng
 Zenzele
 Venterspost
 Bekkersdal
 Nufcor
-Westonaria NU
+Westonaria 
 Waterworks
 Lenz
 Simunye
@@ -7582,7 +7582,7 @@ Elsburg Gold Mine
 Seberuberung
 Charl Cilliers
 Botleng
-Victor Khanye NU
+Victor Khanye 
 Modder East Orchards
 Delmas
 Rietkol
@@ -7598,7 +7598,7 @@ Clewer
 Bloukrans
 Landau Colliery
 Greenside Colliery
-eMalahleni NU
+eMalahleni 
 Naauwpoort
 Eglington A
 Ludlow
@@ -7673,7 +7673,7 @@ Setlabotjha
 Sobea
 Makgemeng
 Mahlatswetsa
-Mantsopa NU
+Mantsopa 
 Manyatseng
 Ladybrand
 Tweespruit
@@ -7682,7 +7682,7 @@ Thaba Phatswa
 Dipelaneng
 Hobhouse
 Vierfontein
-Moqhaka NU
+Moqhaka 
 Rammulotsi
 Viljoenskroon
 Kroonstad
@@ -7692,7 +7692,7 @@ Steynsrus
 Parys
 Tumahole
 Schonkenville
-Ngwathe NU
+Ngwathe 
 Vredefort
 Mokwallo
 Kwakwatsi
@@ -7706,7 +7706,7 @@ Edenville
 Richmond
 Viljoensdrift
 Bertha Shaft Village
-Metsimaholo NU
+Metsimaholo 
 Stokkies Draai
 Wonderwater
 Baddriftbrug
@@ -7723,7 +7723,7 @@ Holly Country
 Oranjeville
 Qalabotjha
 Villiers
-Mafube NU
+Mafube 
 Ntswanatsatsi
 Cornelia
 Namahadi
@@ -7731,7 +7731,7 @@ Frankfort
 Mafahlaneng
 Tweeling
 Soetdoring Nature Reserve
-Mangaung NU
+Mangaung 
 Bofulo
 Rooibult
 Kgalala
@@ -7790,7 +7790,7 @@ Thuthuka
 Thendeni
 Enhlangwini
 Ntabakucasha
-Umzumbe NU
+Umzumbe 
 Umgayi
 Mbiyane
 Gubhuza
@@ -7889,7 +7889,7 @@ KwaNyuswa
 KwaMshiwa
 Thistles
 Mahlabathini
-Ezingoleni NU
+Ezingoleni 
 Blose
 Wosiyane
 Thembeni
@@ -7914,7 +7914,7 @@ Mdlazi
 Mthimude
 Umzinto
 Hibberdene
-Hibiscus Coast NU
+Hibiscus Coast 
 Magog
 Silwane
 Bendigo
@@ -7956,7 +7956,7 @@ Thundeza
 Thongasi
 Nzimakwe
 Lusitania
-Emnambithi/Ladysmith NU
+Emnambithi/Ladysmith 
 Watershed
 Driefontein
 Randjieslaagte
@@ -7981,7 +7981,7 @@ Graythorne
 Roosboom
 Colenso
 Charlestown
-Newcastle NU
+Newcastle 
 Masondale
 Suspense
 Dicks Halt
@@ -8005,7 +8005,7 @@ Ngagane
 Ngagane Colliery
 Alcockspruit
 Groenvlei
-Emadlangeni NU
+Emadlangeni 
 Utrecht
 Berouw
 Waterval
@@ -8033,7 +8033,7 @@ Verdriet
 Geduld
 Nguqunguqu
 Striijbank
-Dannhauser NU
+Dannhauser 
 Skombaren
 Cork
 Mullingar
@@ -8048,7 +8048,7 @@ Springlake
 Hattingspruit
 Bright Home
 Draaiom Trust
-Abaqulusi NU
+Abaqulusi 
 Louwsburg
 Itala
 KwaManyinyi
@@ -8099,7 +8099,7 @@ Ovondlo
 Nseleni
 Ezikhaleni
 Mkhoma
-uMhlathuze NU
+uMhlathuze 
 Richards Bay
 Gubhethuka
 Bhiliya
@@ -8133,7 +8133,7 @@ Empotholo
 Kwazondi
 Ohlahla
 Gada
-Nkandla NU
+Nkandla 
 Matshensikazi
 Phambana
 Masoka
@@ -8229,7 +8229,7 @@ Nqabeni
 Chaewe
 KwaDulela
 Ebaleni
-The Msunduzi NU
+The Msunduzi 
 Haza
 KwaMgwagwa
 Zayeka
@@ -8364,7 +8364,7 @@ Mvelabusha
 Ngxabano
 Mqobela
 Hlabezinhlohe
-Umhlabuyalingana NU
+Umhlabuyalingana 
 Ndlondlweni
 Mpophomeni
 Mabhudu
@@ -8382,7 +8382,7 @@ Tlapeng B
 Povall
 Louwna
 GaMogopa
-Ventersdorp NU
+Ventersdorp 
 Welgevonden
 Goedgevonden A
 Doornkop
@@ -8393,7 +8393,7 @@ Ventersdorp
 Tshing
 Makokskraal
 Boskop
-Tlokwe City Council NU
+Tlokwe City Council 
 Mooivallei Park
 Potchefstroom
 Deelkraal Gold Mine
@@ -8402,7 +8402,7 @@ Fochville
 Green Park
 Kokosi
 Centurion
-Ekurhuleni NU
+Ekurhuleni 
 Tweefontein
 Clayville
 Tembisa
@@ -8513,7 +8513,7 @@ Vumbu
 Oshikishini
 Ewosi
 Ehlongwa
-Maphumulo NU
+Maphumulo 
 Woyisane
 Ekhatha
 Ntunjambili
@@ -8627,7 +8627,7 @@ Ntontonto
 Mysieland
 Vernon Crookes
 Emahlathini
-Vulamehlo NU
+Vulamehlo 
 KaDlangezwa
 Ophondweni
 Bhobhobho
@@ -8647,7 +8647,7 @@ eHlanzeni
 aMahlongwa
 Umgwemphisi
 Amandawe
-Umdoni NU
+Umdoni 
 Umzinto
 Esperanza
 Mhlangamkhulu
@@ -8671,7 +8671,7 @@ Faya
 KwaYibusele
 Mbulwane
 Carney Hill
-uMshwathi NU
+uMshwathi 
 Weltevreden
 Bock en houd Fontein
 Frenchay West
@@ -8709,7 +8709,7 @@ Mbeka
 Amalanga
 Enbuyeni
 Karkloof
-uMngeni NU
+uMngeni 
 Nottingham Road
 Zenzani
 Balgowan
@@ -8727,7 +8727,7 @@ Cedarge
 Emashingeni
 KwaNontshilwane
 Sutherlands
-Mpofana NU
+Mpofana 
 Winterhoek
 Mooi Rivier
 Meyerdene
@@ -8741,7 +8741,7 @@ Highmoor
 Mkhomazi
 Loteni
 Maitland
-Mpofana NU
+Mpofana 
 Nhlambamasoka
 Nhlathimbe
 Mahlutshini
@@ -8824,7 +8824,7 @@ Mgwenya
 Jilafohla
 Entsongeni
 Thornville
-Richmond NU
+Richmond 
 Hopewell
 Richmond
 Siyathuhuka
@@ -8845,7 +8845,7 @@ Nkangala
 Impembeni
 Weenen
 Ezitendeni
-uMtshezi NU
+uMtshezi 
 CornFields
 Mbondwana
 Thembalihle
@@ -8859,7 +8859,7 @@ Wembesi A
 Moor Park
 Wittekop
 Howe
-Okhahlamba NU
+Okhahlamba 
 Nqula
 Geluksburg
 Green Point
@@ -8918,7 +8918,7 @@ Engonyameni
 Etatane
 Bhekuzulu
 Empangweni
-Imbabazane NU
+Imbabazane 
 Nkomokazini
 Emoyeni
 Mbelekwane
@@ -8955,7 +8955,7 @@ Ruins
 Emahendeni
 Eyosini
 Bloed Rivier
-Endumeni NU
+Endumeni 
 Dundee
 Glencoe
 Stratford
@@ -8967,7 +8967,7 @@ St Mathews
 Ngolokodo
 Nkanda
 Nkandle
-Nqutu NU
+Nqutu 
 Haladu A
 Haladu B
 Ndatshana
@@ -9104,7 +9104,7 @@ Shayanyawo A
 Mpukunyoni
 Ngqulu
 Shayanyawo B
-Msinga NU
+Msinga 
 iNdanyana  B
 Embidlini
 Woza
@@ -9198,7 +9198,7 @@ Inhlonze
 Mandulane
 Nkonyane
 Ndimakude
-Umvoti NU
+Umvoti 
 Sokheni
 Vukaphanzi
 Emakhabeleni
@@ -9266,7 +9266,7 @@ Beginsel
 Kranskloof
 Ncotshane A
 Ncotshane B
-UPhongolo NU
+UPhongolo 
 Tobolsk
 Oranjedal
 Altona
@@ -9289,7 +9289,7 @@ Magudu
 KwaSilevu
 Silwerhout
 KwaDlakuse
-Nongoma NU
+Nongoma 
 Okhalweni
 Madwaleni
 KwaGudlintaba
@@ -9480,7 +9480,7 @@ Shumayeleni
 Ceza
 Zembeni
 Xwayisane
-Ulundi NU
+Ulundi 
 Sidakeni
 Ogedleni
 Mlovu A
@@ -9672,7 +9672,7 @@ Nhlabezinde
 Mayaluka
 Manyiseni
 Khume
-Jozini NU
+Jozini 
 KwaMabona
 Ndumo
 Emanyiseni
@@ -9777,7 +9777,7 @@ Qomukuphila
 Mphakathini
 Mahongaza
 Nsimane
-The Big Five False Bay NU
+The Big Five False Bay 
 Hlabisa
 Nqutsheni
 St. Lucia Marine Reserve
@@ -9818,7 +9818,7 @@ Hlabisa
 Tanganeni
 Nqotweni
 Mabhokisini
-Hlabisa NU
+Hlabisa 
 Umfolozi
 Hlambanyathi
 DukuDuku
@@ -9840,7 +9840,7 @@ Ogengele
 Makhambane
 Madwaleni
 ShikiShela
-DukuDuku NU
+DukuDuku 
 Phondweni
 Esiyembeni
 Nkolokoto
@@ -9860,7 +9860,7 @@ Patane
 Nohaha
 Ezidonini
 Ntuthunga
-Mbonambi NU
+Mbonambi 
 Enhlabosini
 Mazawula
 Ematholeni
@@ -9912,7 +9912,7 @@ Mkhandwini
 Obuka C
 Ongelweni
 Esidakeni
-Ntambanana NU
+Ntambanana 
 Fuyeni B
 Bhiliya
 Sangoyana
@@ -9957,7 +9957,7 @@ Makhwela
 Stezi
 Esithombeni
 Mngampondo
-uMlalazi NU
+uMlalazi 
 Ufasimba
 Mkhuphulangwenya
 Makholokholo
@@ -10080,7 +10080,7 @@ Mphendle
 Mhambuma
 Hayinyama
 Nqekwane
-Mthonjaneni NU
+Mthonjaneni 
 Mbojane
 Gandolo
 Lumbi
@@ -10144,7 +10144,7 @@ Umhlali
 Salt Rock
 Ballito
 Doringkop
-Ndwedwe NU
+Ndwedwe 
 Tucrose
 Ohlange
 Nhlangwini
@@ -10217,7 +10217,7 @@ Xosheyakhe
 Mkobeni Kamensia
 Chibini
 Mqulela
-Ingwe NU
+Ingwe 
 KwaNdonyela
 Jubane
 Siwongozi
@@ -10291,7 +10291,7 @@ Ingwangwane
 Amavondwe
 Mhlangeni
 Mqatsheni
-Kwa Sani NU
+Kwa Sani 
 KwaPitela
 The Ridge
 Mkhomazana
@@ -10301,7 +10301,7 @@ Pevensey
 Okhalweni
 Underberg
 Kansdraai
-Greater Kokstad NU
+Greater Kokstad 
 Franklin
 Kokstad
 Pakkies
@@ -10314,7 +10314,7 @@ Lufafa
 Mgobansimbi
 Amashaka
 Echibini
-Ubuhlebezwe NU
+Ubuhlebezwe 
 Kozondi
 Ntabane
 Koshange
@@ -10352,7 +10352,7 @@ Mhlabatshane
 Mpupumeni
 Ndawana
 Lusutu
-Umzimkhulu NU
+Umzimkhulu 
 New village
 Tsaula
 Rooipoort
@@ -10563,7 +10563,7 @@ Makhaleni
 Greylands
 Tongaat
 Hambanathi
-Ethekwini NU
+Ethekwini 
 Umbhayi
 Cibane
 Inkangala
@@ -10823,7 +10823,7 @@ Craigieburn
 Umkomaas
 Palmcliffe
 Jambo
-Moretele NU
+Moretele 
 Mmukubyane
 Transaksie
 Ngobi
@@ -10887,7 +10887,7 @@ Tshwene Farm
 Ga-Monama
 Kromkuil
 Kwarriekraal
-Madibeng NU
+Madibeng 
 Ga-Rasai
 Fafung
 Mankgekgetha
@@ -10943,7 +10943,7 @@ Elandsfontein
 Frischgewaagd
 Robega
 Chaneng
-Rustenburg NU
+Rustenburg 
 Rasimone
 Bala
 Maile
@@ -11003,14 +11003,14 @@ Buffelsfontein
 Mathopestad A
 Molote
 Nooitgedacht A
-Kgetlengrivier NU
+Kgetlengrivier 
 Borolelo
 Swartruggens
 Reagile
 Koster
 Derby
 Matlametlong
-Moses Kotane NU
+Moses Kotane 
 Mokgalwaneng
 Disake
 Molatedi
@@ -11109,7 +11109,7 @@ Pella
 Tlokweng
 Letlhakane
 Phitshane
-Ratlou NU
+Ratlou 
 Loporung
 Mabule
 Disaneng
@@ -11133,7 +11133,7 @@ Madibogo
 Madibogo Pan
 Diolwane
 Deelpan
-Tswaing NU
+Tswaing 
 Thaba Sione
 Khunwana
 Thawane
@@ -11159,7 +11159,7 @@ Delareyville
 Letsopa
 Ottosdal
 Miga
-Mafikeng NU
+Mafikeng 
 Ikopeleng
 Wintershoek
 Six Hundred
@@ -11224,7 +11224,7 @@ Lombaardslaagte
 Weltevreden
 Mooipan
 Carlisonia
-Ditsobotla NU
+Ditsobotla 
 Bakerville
 Grasfontein
 Welverdiend
@@ -11243,7 +11243,7 @@ Biesiesvlei
 Supingstad
 KwaNtsweng
 Lekgophung
-Ramotshere Moiloa NU
+Ramotshere Moiloa 
 Swartfontein
 Moshana
 Masebudule
@@ -11280,18 +11280,18 @@ Ikageleng
 Khunotswana
 Stella
 Rekgaritlhile
-Naledi NU
+Naledi 
 Vryburg
 Huhudi
 Thakwane
 Migdol
-Mamusa [Schweizer-Reneke]  NU
+Mamusa [Schweizer-Reneke]  
 Glaudina
 Schweizer-Reneke
 Amalia
 Molatswanene
 Maganeng
-Greater Taung NU
+Greater Taung 
 Ntswanahatshe
 Moretele
 Khaukhwe
@@ -11356,7 +11356,7 @@ Gataote
 Kameelputs
 Thota Ya Tau
 Mammutla
-Lekwa-Teemane NU
+Lekwa-Teemane 
 Bloemhof
 Coverndale
 Boitumelong
@@ -11364,7 +11364,7 @@ Christiana
 Utlwanang
 Geluksoord
 Abingdon
-Kagisano NU
+Kagisano 
 Bray
 Pomfret
 Setabeng
@@ -11431,7 +11431,7 @@ Matlwang B
 Matlwang A
 Lindequesdrif
 Faan Meintjies Nature Reserve
-Matlosana NU
+Matlosana 
 Tigane
 Hartbeestfontein B
 Doringkruin
@@ -11457,7 +11457,7 @@ Evaton
 Lakeside
 Sebokeng
 Johandeo
-Emfuleni NU
+Emfuleni 
 Golden Gardens
 Vanderbijlpark
 Vereeniging
@@ -11467,7 +11467,7 @@ Sharpeville
 Bophelong
 Vaal Oewer
 Alberton
-Midvaal NU
+Midvaal 
 Randvaal
 Walkerville
 Vereeniging
@@ -11480,7 +11480,7 @@ Vaal Marina
 Viskuil
 Springs
 Endicott
-Lesedi NU
+Lesedi 
 Impumelelo
 Devon A
 Devon B
@@ -11492,7 +11492,7 @@ Nigel
 Bothasgeluk
 Heidelberg
 Ratanda
-Mogale City NU
+Mogale City 
 Zwartkop
 Rietfontein
 Krugersdorp
@@ -11503,7 +11503,7 @@ Wallis Haven
 Wolwekrans
 Kagiso
 Goudvlakte West
-Merafong City NU
+Merafong City 
 Khutsong
 Carletonville
 Oberholzer
@@ -11542,7 +11542,7 @@ Vosloorus
 Thinasonke
 Kanana
 Malatjie
-City of Johannesburg NU
+City of Johannesburg 
 Diepsloot
 Midrand
 Kaalfontein
@@ -11643,7 +11643,7 @@ Ga-Matlapa
 Ha-Madikana
 Mohodi
 Ga-Maponto
-Molemole NU
+Molemole 
 Westphalia
 Ga-Moleele
 Moshasha
@@ -11694,7 +11694,7 @@ Soutpan
 New Eersterus
 Stinkwater
 Dilopye
-Tshwane NU
+Tshwane 
 Doornkraal
 Onverwacht
 Winterveld
@@ -11749,7 +11749,7 @@ Kameelkraal
 Olievenhoutbos
 Blue Hills
 Vygeboomdam
-Albert Luthuli NU
+Albert Luthuli 
 Maryvale
 Manzana
 Badplaas
@@ -11802,7 +11802,7 @@ Diepdale
 Northdene
 Davale
 Warburton
-Msukaligwa NU
+Msukaligwa 
 Chrissiesmeer
 Breyten
 Lothair
@@ -11816,7 +11816,7 @@ Sheepmoor
 Morgenstond Dam Nature Reserve
 Amsterdam
 KwaThandeka
-Mkhondo NU
+Mkhondo 
 Iswepe
 Saul Mkhizeville
 KwaNgema
@@ -11825,7 +11825,7 @@ Nkosanjaneni
 Piet Retief
 Dirkiesdorp
 Amersfoort
-Seme NU
+Seme 
 Majuba
 Palmietfontein
 Daggakraal
@@ -11834,20 +11834,20 @@ Wakkestroom
 Volksrust
 Morgenzon
 Sivukile
-Lekwa NU
+Lekwa 
 Tutuka
 Thuthukani
 Standerton
 Sakhile
 Siyathemba
 Balfour
-Dipaleseng NU
+Dipaleseng 
 Greylingstad
 Nthorwane
 Grootvlei
 Leandra
 Lebohang
-Govan Mbeki NU
+Govan Mbeki 
 Kinross
 Evander
 Secunda
@@ -11871,7 +11871,7 @@ Reedstream Park
 Thubelihle
 Ga-Nala
 Kranspoort
-Steve Tshwete NU
+Steve Tshwete 
 Piet Tlou
 Mhluzi
 Middelburg
@@ -11885,7 +11885,7 @@ KwaZamokuhle
 Hendrina
 Sakhelwe
 Dullstroom
-eMalahleni NU
+eMalahleni 
 Emgwenya
 Waterval Boven
 eMakhazeni A
@@ -11893,7 +11893,7 @@ Siyathuthuka
 eNtokozweni
 Machadodorp
 Mathys Zyn Loop-A
-Thembisile NU
+Thembisile 
 Dipasana
 Bhundu
 Mkobola
@@ -11916,7 +11916,7 @@ Sehlakwana
 Lefiso
 Lefiswane
 Ditlhokwe
-Dr JS Moroka NU
+Dr JS Moroka 
 Mmaduma
 Terateng
 Seabe
@@ -11960,12 +11960,12 @@ Morwe
 Leeufontein
 Pieterskraal
 Moteti
-DrJSMoroka NU
+DrJSMoroka 
 Kameelpoort
 Leroro
 Blyde River Canyon Nature Reserve
 Matibidi
-Thaba Chweu NU
+Thaba Chweu 
 Moremela
 Pilgrim's Rest
 Graskop
@@ -11981,7 +11981,7 @@ Brooklands
 Buffelskloof
 Sandfort
 Mahukule A
-Mbombela NU
+Mbombela 
 Villa Sabie
 Tshabalala
 Hazyview
@@ -12032,7 +12032,7 @@ Matsulu
 Makawusi
 Ngodwana
 Bonanza Gold Mine
-Umjindi NU
+Umjindi 
 Glenthorpe
 Staatsgrond
 Verulum
@@ -12040,7 +12040,7 @@ Barberton
 Emjindini
 Kruger National Park
 Marloth Park
-Nkomazi NU
+Nkomazi 
 Komatipoort
 Lebombo
 Emjejane
@@ -12080,7 +12080,7 @@ Thornybush Game Reserve
 Kruger National Park
 Manyeleti Game reserve
 Phungwe
-Bushbuckridge NU
+Bushbuckridge 
 Mariepskop State Forest
 Salique State Forest
 GaBoelang
@@ -12196,7 +12196,7 @@ Hoxani
 Mahukule B
 Mangwazi
 KaNwadzekudzeku
-Greater Giyani NU
+Greater Giyani 
 Shivulani
 KaMininginisi
 Mbatlo
@@ -12267,7 +12267,7 @@ Mahembeni
 Makwidibung
 Moshate
 Roerfontein
-Greater Letaba NU
+Greater Letaba 
 Rakgara
 Mamaila
 Nakampe
@@ -12331,7 +12331,7 @@ Modjadjiskloof
 Mokgoba
 Senakwe
 Ga-Matipane
-Tzaneen NU
+Tzaneen 
 GaMoloko
 Mabyepelong
 GaMokgwathi
@@ -12430,7 +12430,7 @@ Moname
 Hoveni
 Mashilwane
 Priska-Majeje
-Ba-Phalaborwa NU
+Ba-Phalaborwa 
 Ga-Selwana
 Mahale
 Nondweni
@@ -12447,7 +12447,7 @@ Maseke
 Vuyelani
 Leydsdorp
 Calais
-Maruleng NU
+Maruleng 
 Loraine
 Moshate
 Jerusalem
@@ -12520,7 +12520,7 @@ Bochabelo
 Mmantlanyane
 Ngwaritsana
 Gumbu
-Mutale Munic NU
+Mutale Munic 
 Sigonde
 Tshenzhelani
 Bende Mutale
@@ -12624,7 +12624,7 @@ Khakhu
 Tshiavha
 Mazwimba
 Lamvi
-Thulamela NU
+Thulamela 
 Mukondeni
 Vhurivhuri
 Mavunde
@@ -12761,14 +12761,14 @@ Altein
 Ka-Muswane
 Ka-Xihosana
 Mapungubwe Nature Reserve
-Musina NU
+Musina 
 Beit Bridge
 Musina
 Malale
 Madimbo
 Mopane
 Smokey
-Makhado NU
+Makhado 
 Gaarside
 Dolidoli
 Khomela
@@ -12889,7 +12889,7 @@ Thothololo
 Muumoni
 Ha-Muila B
 Alldays
-Blouberg Munic NU
+Blouberg Munic 
 GaRamaswikana
 Sias
 Modimvuhusi
@@ -13014,7 +13014,7 @@ Rora
 Aurora
 Mosehleng
 Ga-Dikgale
-Aganang NU
+Aganang 
 Ga-Keetse
 Mohlajeng
 Ga-Mankodi
@@ -13117,7 +13117,7 @@ Makgalong
 Ga-Makgato
 Eisleben
 Mmadigorong
-Polokwane NU
+Polokwane 
 Ga-Hlahla
 Ga-Makibelo
 Ga-Setati
@@ -13238,7 +13238,7 @@ Ga-Chuene
 Bergnek
 Sebonapudi
 Fertilis
-Lepele-Nkumpi NU
+Lepele-Nkumpi 
 Ga-Mampa
 Ga-Moila
 Ditholong
@@ -13324,7 +13324,7 @@ Khureng
 Seruleng
 Kgwaripe
 Klipheuvel
-Thabazimbi NU
+Thabazimbi 
 Thabazimbi A
 Amandelbult
 Northam A
@@ -13336,7 +13336,7 @@ Leeupoort
 Thabazimbi
 Sitrusvlakte
 Sefetlhogo
-Lephalale NU
+Lephalale 
 Morwe
 Lebu
 Botshabelo
@@ -13374,17 +13374,17 @@ Shongoane
 Marapong
 Lephalale
 Mookgopong
-Mookgopong Munic NU
+Mookgopong Munic 
 Roedtan
 Thusang
 Leseding
 Vaalwater
-Modimolle Munic NU
+Modimolle Munic 
 Alma
 Phagameng
 Modimolle
 Vingerkraal
-Bela-Bela NU
+Bela-Bela 
 Bela-Bela
 Lebogang
 Settlers
@@ -13393,7 +13393,7 @@ Rapotokwane
 Rust De Winter
 Pienaarsrivier
 Breda
-Mogalakwena NU
+Mogalakwena 
 Polen
 Khala
 Doren
@@ -13517,7 +13517,7 @@ Sekgakgapeng
 Mokopane
 Makapan Valley
 Dichoeung
-Marble Hall NU
+Marble Hall 
 Tsantsabela
 Mbuzini
 Elandskraal
@@ -13580,7 +13580,7 @@ Matlerekeng
 Tshikanosi
 Matlala Ramoshebo
 Galgoloko
-Elias Motsoaledi NU
+Elias Motsoaledi 
 Legolaneng
 Dikgalaopeng
 Makgophong
@@ -13655,7 +13655,7 @@ Thabakhubedu
 Marapong
 Laersdrift
 Pelindaba
-Makhuduthamaga NU
+Makhuduthamaga 
 Kgwarip
 Tswaing
 Lekorong
@@ -13805,7 +13805,7 @@ Motwaneng
 Hlalanikahle
 Monsterlus
 Shubushubu
-Fetakgomo NU
+Fetakgomo 
 Rostok
 Mahlabeng
 Mohlahlaneng
@@ -13915,7 +13915,7 @@ Mpahanama
 Mphanama
 Lehlabile
 Lwaleng
-Greater Tubatse NU
+Greater Tubatse 
 Motloulela
 Legwareng
 Wismar
