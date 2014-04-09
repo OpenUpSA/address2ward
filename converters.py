@@ -1,4 +1,5 @@
 import urllib2, urllib
+import logging
 import json
 from datetime import datetime
 import re
@@ -7,7 +8,10 @@ from geopy.geocoders import GoogleV3
 from omgeo import Geocoder
 from config import configuration
 
+logger = logging.Logger(__name__)
+
 class AddressConverter(object):
+
     def __init__(self, curs):
         self.curs = curs
         self.geolocator = GoogleV3()
@@ -17,6 +21,13 @@ class AddressConverter(object):
 
     def remove_all_numbers(self, address):
         if self.re_numbers.search(address):
+            logger.info("Rejected by remove_all_numbers")
+            return True
+        return False
+
+    def remove_short_words(self, address, length):
+        if len(address) <= length:
+            logger.info("Rejected by remove_short_words")
             return True
         return False
         
@@ -25,6 +36,12 @@ class AddressConverter(object):
             address = address.strip()
             if address == "": return None
             if "remove_numbers" in kwargs and self.remove_all_numbers(address): return None
+            if "remove_short_words" in kwargs:
+                try:
+                    val = self.remove_short_words(address, int(kwargs["remove_short_words"][0]))
+                    if val: return None
+                except (TypeError, ValueError):
+                    pass
 
             address = urllib.quote(address)
             url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, configuration["environment"]["google_key"])

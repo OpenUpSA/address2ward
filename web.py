@@ -48,6 +48,20 @@ def close_connection(exception):
 @app.route("/wards/2006/", methods=["GET"])
 @app.route("/", methods=["GET"])
 def a2w():
+    """
+    addition parameters for address quality can be added
+    e.g.
+    http://.....?address=51+Main+Rd,Limpopo&remove_numbers
+    
+    options are:
+    remove_numbers - strings that are all numbers
+    remove_short_words - remove short tokens, the parameter given is the cut of size, e.g.
+
+        http://.....?address=51+Main+Rd,Limpopo&remove_short_words=4 
+
+    will remove all addresses where the address length is 4 letters or less
+    
+    """
     address = request.args.get("address")
     database = request.args.get("database", "wards_2006")
     
