@@ -51,8 +51,11 @@ def a2w():
     address = request.args.get("address")
     database = request.args.get("database", "wards_2006")
     
+    params = dict(request.args)
+    del params["address"]
+
     if address:
-        js = get_converter(database).convert(address)
+        js = get_converter(database).convert(address, **params)
         js = js or {"error" : "address not found"}
         return Response(
             response=json.dumps(js, indent=4), status=200, mimetype="application/json"

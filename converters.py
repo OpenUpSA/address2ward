@@ -1,6 +1,7 @@
 import urllib2, urllib
 import json
 from datetime import datetime
+import re
 
 from geopy.geocoders import GoogleV3
 from omgeo import Geocoder
@@ -12,9 +13,19 @@ class AddressConverter(object):
         self.geolocator = GoogleV3()
         
         self.geocoder = Geocoder()
+        self.re_numbers = re.compile("^\d+$")
+
+    def remove_all_numbers(self, address):
+        if self.re_numbers.search(address):
+            return True
+        return False
         
-    def resolve_address_google(self, address):
+    def resolve_address_google(self, address, **kwargs):
         try:
+            address = address.strip()
+            if address == "": return None
+            if "remove_numbers" in kwargs and self.remove_all_numbers(address): return None
+
             address = urllib.quote(address)
             url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, configuration["environment"]["google_key"])
             response = urllib2.urlopen(url)
@@ -52,8 +63,8 @@ class AddressConverter(object):
 
         return address, latitude, longitude
 
-    def convert_address(self, address):
-        return self.resolve_address_google(address)
+    def convert_address(self, address, **kwargs):
+        return self.resolve_address_google(address, **kwargs)
 
     def convert_to_geography(self, sql, latitude, longitude):
         poi = (longitude, latitude)
@@ -63,9 +74,9 @@ class AddressConverter(object):
         return self.curs.fetchall()
 
 class Ward2006AddressConverter(AddressConverter):
-    def convert(self, address):
+    def convert(self, address, **kwargs):
         now1 = datetime.now()
-        results = self.convert_address(address) 
+        results = self.convert_address(address, **kwargs) 
         now2 = datetime.now()
         if not results: return None
 
@@ -101,9 +112,9 @@ class Ward2006AddressConverter(AddressConverter):
         return wards
 
 class PoliceAddressConverter(AddressConverter):
-    def convert(self, address):
+    def convert(self, address, **kwargs):
         now1 = datetime.now()
-        results = self.convert_address(address) 
+        results = self.convert_address(address, **kwargs) 
         now2 = datetime.now()
         if not results: return None
 
@@ -130,9 +141,9 @@ class PoliceAddressConverter(AddressConverter):
         return stations
 
 class VD2014Converter(AddressConverter):
-    def convert(self, address):
+    def convert(self, address, **kwargs):
         now1 = datetime.now()
-        results = self.convert_address(address) 
+        results = self.convert_address(address, **kwargs) 
         now2 = datetime.now()
         if not results: return None
 

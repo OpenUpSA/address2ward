@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
         while True:
             address = raw_input("Enter in an address: ")
-            js = c.convert(address)
+            js = c.convert(address, remove_numbers=1)
             if not js:
                 print("Address: %s, could not be found" % address)
                 continue
