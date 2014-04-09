@@ -10,6 +10,8 @@ from config import configuration
 
 logger = logging.Logger(__name__)
 
+main_places = set([mp.strip() for mp in open("mp.csv")])
+
 class AddressConverter(object):
 
     def __init__(self, curs):
@@ -28,6 +30,13 @@ class AddressConverter(object):
     def remove_short_words(self, address, length):
         if len(address) <= length:
             logger.info("Rejected by remove_short_words")
+            return True
+        return False
+
+    def remove_main_places(self, address):
+        parts = address.split(",")
+        first = parts[0].strip()
+        if first in main_places:
             return True
         return False
         
@@ -56,6 +65,10 @@ class AddressConverter(object):
             results = []
             if "results" in js and len(js["results"]) > 0:
                 for result in js["results"]:
+                    if "remove_main_places" in kwargs:
+                        res = self.remove_main_places(result["formatted_address"])
+                        if res: continue
+
                     geom = result["geometry"]["location"]
                     results.append({
                         "lat" : geom["lat"],
@@ -63,6 +76,7 @@ class AddressConverter(object):
                         "formatted_address" : result["formatted_address"]
                     })
 
+                if len(results) == 0: return None
                 return results
         except Exception:
             logger.exception("Error trying to resolve %s" % address)
