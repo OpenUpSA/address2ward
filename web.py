@@ -66,7 +66,8 @@ def a2w():
     database = request.args.get("database", "wards_2006")
     
     params = dict(request.args)
-    del params["address"]
+    if "address" in params:
+        del params["address"]
 
     if address:
         js = get_converter(database).convert(address, **params)
