@@ -144,10 +144,11 @@ class AddressConverter(object):
                 val = self.reject_large_main_places(address)
             if val: return None
 
-        #results = self.resolve_address_nominatim(address, **kwargs)
-        results = []
-        if len(results) > 0:
-            return results
+        if not "disable_nominatim" in kwargs:
+            results = self.resolve_address_nominatim(address, **kwargs)
+
+            if len(results) > 0:
+                return results
 
         return self.resolve_address_google(address, **kwargs)
 

@@ -73,6 +73,7 @@ def a2w():
 
     will reject an address resolution which resolves to a main place above 15000 people
 
+    disable_nominatim - disable nominatim address resolution and send all requests to google
     
     """
     address = request.args.get("address")
