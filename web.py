@@ -51,21 +51,27 @@ def a2w():
     """
     addition parameters for address quality can be added
     e.g.
-    http://.....?address=51+Main+Rd,Limpopo&remove_numbers
+    http://.....?address=51+Main+Rd,Limpopo&reject_numbers
     
     options are:
-    remove_numbers - strings that are all numbers
-    remove_short_words - remove short tokens, the parameter given is the cut of size, e.g.
+    reject_numbers - strings that are all numbers
+    reject_short_words - remove short tokens, the parameter given is the cut of size, e.g.
 
-        http://.....?address=51+Main+Rd,Limpopo&remove_short_words=4 
+        http://.....?address=51+Main+Rd,Limpopo&reject_short_words=4 
 
     will remove all addresses where the address length is 4 letters or less
 
-    remove_large_main_places - remove an address if it matches a main place exactly and the population of that main place is above a threshold, e.g.
+    reject_large_main_places - remove an address if it matches a main place exactly and the population of that main place is above a threshold, e.g.
 
-        http://.....?address=Cape Town&remove_large_main_places=20000
+        http://.....?address=Cape Town&reject_large_main_places=20000
 
     will not try to resolve Cape Town because its population is over 20000 people, the default is 15000
+
+    reject_resolution_to_main_place - remove an address if google resolves it to a main place with a population above a threshold, e.g.
+
+        http://.....?address=Cape Town&reject_resolution_to_main_place=15000
+
+    will reject an address resolution which resolves to a main place above 15000 people
 
     
     """

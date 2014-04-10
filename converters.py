@@ -33,33 +33,31 @@ class AddressConverter(object):
         self.geocoder = Geocoder()
         self.re_numbers = re.compile("^\d+$")
 
-    def remove_all_numbers(self, address):
+    def reject_all_numbers(self, address):
         if self.re_numbers.search(address):
-            logger.info("Rejected by remove_all_numbers")
+            logger.info("Rejected by reject_all_numbers")
             return True
         return False
 
-    def remove_short_words(self, address, length=4):
+    def reject_short_words(self, address, length=4):
         if len(address) <= length:
-            logger.info("Rejected by remove_short_words")
+            logger.info("Rejected by reject_short_words")
             return True
         return False
 
-    def remove_large_main_places(self, address, threshold=15000):
+    def reject_large_main_places(self, address, threshold=15000):
         if address in main_places:
             population = main_places[address]["Population"]
             if int(population) >= threshold:
                 return True
         return False
 
-    def remove_main_places(self, address):
-        parts = address.split(",").lower()
-        first = parts[0].strip()
-        if first in main_places:
-            return True
-        return False
+    def reject_resolution_to_main_place(self, address, threshold=15000):
+        parts = address.split(",")
+        first = parts[0].strip().lower()
+        return self.reject_large_main_places(first, threshold)
 
-    def remove_partial_match(self, result):
+    def reject_partial_match(self, result):
         if "partial_match" in result and result["partial_match"]:
             return True
         return False
@@ -80,11 +78,14 @@ class AddressConverter(object):
             if "results" in js and len(js["results"]) > 0:
                 for result in js["results"]:
 
-                    res = self.remove_partial_match(result)
+                    res = self.reject_partial_match(result)
                     if res: continue
 
-                    if "remove_main_places" in kwargs:
-                        res = self.remove_main_places(result["formatted_address"])
+                    if "reject_resolution_to_main_place" in kwargs:
+                        try:
+                            res = self.reject_resolution_to_main_place(result["formatted_address"], int(kwargs["reject_resolution_to_main_place"][0]))
+                        except (ValueError, TypeError):
+                            res = self.resolution_to_main_place(result["formatted_address"])
                         if res: continue
 
                     geom = result["geometry"]["location"]
@@ -128,22 +129,23 @@ class AddressConverter(object):
     def convert_address(self, address, **kwargs):
         address = address.strip()
         if address == "": return None
-        if "remove_numbers" in kwargs and self.remove_all_numbers(address): return None
-        if "remove_short_words" in kwargs:
+        if "reject_numbers" in kwargs and self.reject_all_numbers(address): return None
+        if "reject_short_words" in kwargs:
             try:
-                val = self.remove_short_words(address, int(kwargs["remove_short_words"][0]))
+                val = self.reject_short_words(address, int(kwargs["reject_short_words"][0]))
             except (TypeError, ValueError):
-                val = self.remove_short_words(address)
+                val = self.reject_short_words(address)
             if val: return None
 
-        if "remove_large_main_places" in kwargs:
+        if "reject_large_main_places" in kwargs:
             try:
-                val = self.remove_large_main_places(address, int(kwargs["remove_large_main_places"][0]))
+                val = self.reject_large_main_places(address, int(kwargs["reject_large_main_places"][0]))
             except (TypeError, ValueError):
-                val = self.remove_large_main_places(address)
+                val = self.reject_large_main_places(address)
             if val: return None
 
-        results = self.resolve_address_nominatim(address, **kwargs)
+        #results = self.resolve_address_nominatim(address, **kwargs)
+        results = []
         if len(results) > 0:
             return results
 
