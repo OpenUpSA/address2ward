@@ -254,6 +254,7 @@ class VD2014Converter(AddressConverter):
 
             for row in rows:
                 vds.append({
+                    "source" : result["source"],
                     "voting_district" : str(row[0]),
                     "ward" : str(row[1]),
                     "municipality" : str(row[2]),
