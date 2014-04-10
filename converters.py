@@ -5,6 +5,7 @@ from datetime import datetime
 import re
 
 from geopy.geocoders import GoogleV3
+import nominatim
 from omgeo import Geocoder
 from config import configuration
 
@@ -17,6 +18,7 @@ class AddressConverter(object):
     def __init__(self, curs):
         self.curs = curs
         self.geolocator = GoogleV3()
+        self.nominatim = nominatim.Geocoder()
         
         self.geocoder = Geocoder()
         self.re_numbers = re.compile("^\d+$")
@@ -42,16 +44,6 @@ class AddressConverter(object):
         
     def resolve_address_google(self, address, **kwargs):
         try:
-            address = address.strip()
-            if address == "": return None
-            if "remove_numbers" in kwargs and self.remove_all_numbers(address): return None
-            if "remove_short_words" in kwargs:
-                try:
-                    val = self.remove_short_words(address, int(kwargs["remove_short_words"][0]))
-                    if val: return None
-                except (TypeError, ValueError):
-                    pass
-
             address = urllib.quote(address)
             url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, configuration["environment"]["google_key"])
             response = urllib2.urlopen(url)
@@ -94,7 +86,32 @@ class AddressConverter(object):
 
         return address, latitude, longitude
 
+    def resolve_address_nominatim(self, address, **kwargs):
+        results = self.nominatim.geocode(address)
+        return [
+            {
+                "lat" : r["lat"],
+                "lng" : r["lon"],   
+                "formatted_address" : r["display_name"]
+            }
+            for r in results
+        ]}
+
     def convert_address(self, address, **kwargs):
+        address = address.strip()
+        if address == "": return None
+        if "remove_numbers" in kwargs and self.remove_all_numbers(address): return None
+        if "remove_short_words" in kwargs:
+            try:
+                val = self.remove_short_words(address, int(kwargs["remove_short_words"][0]))
+                if val: return None
+            except (TypeError, ValueError):
+                pass
+
+        results = self.resolve_address_nominatim(address, **kwargs)
+        if len(results) > 0:
+            return results
+
         return self.resolve_address_google(address, **kwargs)
 
     def convert_to_geography(self, sql, latitude, longitude):
