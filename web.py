@@ -60,6 +60,13 @@ def a2w():
         http://.....?address=51+Main+Rd,Limpopo&remove_short_words=4 
 
     will remove all addresses where the address length is 4 letters or less
+
+    remove_large_main_places - remove an address if it matches a main place exactly and the population of that main place is above a threshold, e.g.
+
+        http://.....?address=Cape Town&remove_large_main_places=20000
+
+    will not try to resolve Cape Town because its population is over 20000 people, the default is 15000
+
     
     """
     address = request.args.get("address")
