@@ -65,7 +65,8 @@ class AddressConverter(object):
                     results.append({
                         "lat" : geom["lat"],
                         "lng" : geom["lng"],   
-                        "formatted_address" : result["formatted_address"]
+                        "formatted_address" : result["formatted_address"],
+                        "source" : "Google Geocoding API",
                     })
 
                 if len(results) == 0: return None
@@ -92,10 +93,11 @@ class AddressConverter(object):
             {
                 "lat" : r["lat"],
                 "lng" : r["lon"],   
-                "formatted_address" : r["display_name"]
+                "formatted_address" : r["display_name"],
+                "source" : "Nominatim",
             }
             for r in results
-        ]}
+        ]
 
     def convert_address(self, address, **kwargs):
         address = address.strip()
@@ -146,6 +148,7 @@ class Ward2006AddressConverter(AddressConverter):
             now3 = datetime.now()
             for row in rows:
                 wards.append({
+                    "source" : result["source"],
                     "address" : result["formatted_address"],
                     "coords" : (result["lat"], result["lng"]),
                     "province" : row[0],
