@@ -41,6 +41,11 @@ class AddressConverter(object):
         if first in main_places:
             return True
         return False
+
+    def remove_partial_match(self, result):
+        if "partial_match" in result and result["partial_match"]:
+            return True
+        return False
         
     def resolve_address_google(self, address, **kwargs):
         try:
@@ -57,6 +62,10 @@ class AddressConverter(object):
             results = []
             if "results" in js and len(js["results"]) > 0:
                 for result in js["results"]:
+
+                    res = self.remove_partial_match(result)
+                    if res: continue
+
                     if "remove_main_places" in kwargs:
                         res = self.remove_main_places(result["formatted_address"])
                         if res: continue
