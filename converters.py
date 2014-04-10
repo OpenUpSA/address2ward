@@ -1,4 +1,5 @@
 import urllib2, urllib
+import csv
 import logging
 import json
 from datetime import datetime
@@ -11,7 +12,16 @@ from config import configuration
 
 logger = logging.Logger(__name__)
 
-main_places = set([mp.strip() for mp in open("mp.csv")])
+def load_mps():
+    data = {}
+    reader = csv.reader(open("mp_population.csv"))
+    mp_headers = reader.next()
+    for row in reader:
+        datum = dict(zip(mp_headers, row))
+        data[datum["MP_NAME"].lower()] = datum 
+    return data
+
+main_places = load_mps()
 
 class AddressConverter(object):
 
@@ -35,8 +45,15 @@ class AddressConverter(object):
             return True
         return False
 
+    def remove_large_main_places(self, address, threshold=15000):
+        if address in main_places:
+            population = main_places[address]["Population"]
+            if int(population) >= threshold:
+                return True
+        return False
+
     def remove_main_places(self, address):
-        parts = address.split(",")
+        parts = address.split(",").lower()
         first = parts[0].strip()
         if first in main_places:
             return True
@@ -118,6 +135,13 @@ class AddressConverter(object):
                 if val: return None
             except (TypeError, ValueError):
                 pass
+
+        if "remove_large_main_places" in kwargs:
+            try:
+                val = self.remove_large_main_places(address, int(kwargs["remove_large_main_places"][0]))
+            except (TypeError, ValueError):
+                val = self.remove_large_main_places(address)
+            if val: return None
 
         results = self.resolve_address_nominatim(address, **kwargs)
         if len(results) > 0:
