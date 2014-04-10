@@ -129,6 +129,9 @@ class AddressConverter(object):
     def convert_address(self, address, **kwargs):
         address = address.strip()
         if address == "": return None
+        if not "south africa" in address.lower():
+            address = address + ", South Africa"
+
         if "reject_numbers" in kwargs and self.reject_all_numbers(address): return None
         if "reject_short_words" in kwargs:
             try:
