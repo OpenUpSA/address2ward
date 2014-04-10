@@ -39,7 +39,7 @@ class AddressConverter(object):
             return True
         return False
 
-    def remove_short_words(self, address, length):
+    def remove_short_words(self, address, length=4):
         if len(address) <= length:
             logger.info("Rejected by remove_short_words")
             return True
@@ -132,9 +132,9 @@ class AddressConverter(object):
         if "remove_short_words" in kwargs:
             try:
                 val = self.remove_short_words(address, int(kwargs["remove_short_words"][0]))
-                if val: return None
             except (TypeError, ValueError):
-                pass
+                val = self.remove_short_words(address)
+            if val: return None
 
         if "remove_large_main_places" in kwargs:
             try:
