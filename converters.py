@@ -12,6 +12,11 @@ from config import configuration
 
 logger = logging.Logger(__name__)
 
+def encode(s, encoding="utf8"):
+    if type(s) == unicode:
+        return s.encode(encoding)
+    return s
+
 def load_mps():
     data = {}
     reader = csv.reader(open("mp_population.csv"))
@@ -64,7 +69,9 @@ class AddressConverter(object):
         
     def resolve_address_google(self, address, **kwargs):
         try:
-            address = urllib.quote(address)
+            encoded_address = encode(address)
+            address = urllib.quote(encoded_address)
+
             url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, configuration["environment"]["google_key"])
             response = urllib2.urlopen(url)
             js = response.read()
@@ -115,7 +122,8 @@ class AddressConverter(object):
         return address, latitude, longitude
 
     def resolve_address_nominatim(self, address, **kwargs):
-        results = self.nominatim.geocode(address)
+        encoded_address = encode(address)
+        results = self.nominatim.geocode(encoded_address)
         return [
             {
                 "lat" : r["lat"],
@@ -129,8 +137,6 @@ class AddressConverter(object):
     def convert_address(self, address, **kwargs):
         address = address.strip()
         if address == "": return None
-        if not "south africa" in address.lower():
-            address = address + ", South Africa"
 
         if "reject_numbers" in kwargs and self.reject_all_numbers(address): return None
         if "reject_short_words" in kwargs:
@@ -146,6 +152,9 @@ class AddressConverter(object):
             except (TypeError, ValueError):
                 val = self.reject_large_main_places(address)
             if val: return None
+
+        if not "south africa" in address.lower():
+            address = address + ", South Africa"
 
         if not "disable_nominatim" in kwargs:
             results = self.resolve_address_nominatim(address, **kwargs)
