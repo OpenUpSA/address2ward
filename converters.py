@@ -156,7 +156,7 @@ class AddressConverter(object):
         if not "south africa" in address.lower():
             address = address + ", South Africa"
 
-        if not "disable_nominatim" in kwargs:
+        if "enable_nominatim" in kwargs:
             results = self.resolve_address_nominatim(address, **kwargs)
 
             if len(results) > 0:
