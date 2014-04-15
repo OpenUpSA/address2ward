@@ -171,7 +171,8 @@ class AddressConverter(object):
 
         return self.curs.fetchall()
 
-class Ward2006AddressConverter(AddressConverter):
+class WardAddressConverter(AddressConverter):
+
     def convert(self, address, **kwargs):
         now1 = datetime.now()
         results = self.convert_address(address, **kwargs) 
@@ -279,7 +280,8 @@ class VD2014Converter(AddressConverter):
         return vds
 
 converters = {
-    "wards_2006" : Ward2006AddressConverter,
+    "wards_2006" : WardAddressConverter,
+    "wards_2011" : WardAddressConverter,
     "police" : PoliceAddressConverter,
     "vd_2014" : VD2014Converter,
 }
