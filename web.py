@@ -74,6 +74,8 @@ def a2w():
     will reject an address resolution which resolves to a main place above 15000 people
 
     disable_nominatim - disable nominatim address resolution and send all requests to google
+
+    jsonp - return a result wrapped as jsonp
     
     """
     address = request.args.get("address")
@@ -86,9 +88,11 @@ def a2w():
     if address:
         js = get_converter(database).convert(address, **params)
         js = js or {"error" : "address not found"}
-        return Response(
-            response=json.dumps(js, indent=4), status=200, mimetype="application/json"
-        )
+        js = json.dumps(js, indent=4)
+        if "jsonp" in request.args:
+            js = "geocoder(%s)" % js
+
+        return Response(response=js, status=200, mimetype="application/json")
     else:
         return render_template("search.html")
 
