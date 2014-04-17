@@ -56,7 +56,7 @@ def wards_2011():
 
 @app.route("/votingdistricts/2014/", methods=["GET"])
 def vd_2014():
-    return a2w("wards_2014")
+    return a2w("vd_2014")
 
 @app.route("/police/", methods=["GET"])
 def police():
