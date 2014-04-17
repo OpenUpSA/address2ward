@@ -27,5 +27,5 @@ def deploy():
         api.run("git pull origin master")
         api.run("%s install -r %s/requirements/web.txt --quiet" % (configuration["environment"]["pip"], configuration["environment"]["code_dir"]))
 
-        api.sudo("supervisorctl restart wards")
+        api.sudo("supervisorctl restart 'wards:*'")
 
