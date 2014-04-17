@@ -103,10 +103,10 @@ def a2w(database="wards_2006"):
         js = get_converter(database).convert(address, **params)
         js = js or {"error" : "address not found"}
         js = json.dumps(js, indent=4)
-        if "jsonp" in request.args:
-            js = "geocoder(%s)" % js
+        if "callback" in request.args:
+            js = "geocoder(%s);" % js
 
-        return Response(response=js, status=200, mimetype="application/json")
+        return Response(response=js, status=200, mimetype="text/javascript")
     else:
         return render_template("search.html")
 
