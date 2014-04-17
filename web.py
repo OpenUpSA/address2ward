@@ -47,7 +47,22 @@ def close_connection(exception):
 
 @app.route("/wards/2006/", methods=["GET"])
 @app.route("/", methods=["GET"])
-def a2w():
+def wards_2006():
+    return a2w("wards_2006")
+
+@app.route("/wards/2011/", methods=["GET"])
+def wards_2011():
+    return a2w("wards_2011")
+
+@app.route("/votingdistricts/2014/", methods=["GET"])
+def vd_2014():
+    return a2w("wards_2014")
+
+@app.route("/police/", methods=["GET"])
+def police():
+    return a2w("police")
+
+def a2w(database="wards_2006"):
     """
     addition parameters for address quality can be added
     e.g.
@@ -79,7 +94,6 @@ def a2w():
     
     """
     address = request.args.get("address")
-    database = request.args.get("database", "wards_2006")
     
     params = dict(request.args)
     if "address" in params:
