@@ -46,11 +46,19 @@ def close_connection(exception):
             db.close()
 
 @app.route("/wards/2006/", methods=["GET"])
+@app.route("/wards/2007/", methods=["GET"])
+@app.route("/wards/2008/", methods=["GET"])
+@app.route("/wards/2009/", methods=["GET"])
+@app.route("/wards/2010/", methods=["GET"])
 @app.route("/", methods=["GET"])
 def wards_2006():
     return a2w("wards_2006")
 
 @app.route("/wards/2011/", methods=["GET"])
+@app.route("/wards/2012/", methods=["GET"])
+@app.route("/wards/2013/", methods=["GET"])
+@app.route("/wards/2014/", methods=["GET"])
+@app.route("/wards/2015/", methods=["GET"])
 def wards_2011():
     return a2w("wards_2011")
 
@@ -94,6 +102,7 @@ def a2w(database="wards_2006"):
     
     """
     address = request.args.get("address")
+    database = request.args.get("database", database)
     
     params = dict(request.args)
     if "address" in params:
