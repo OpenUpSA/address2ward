@@ -113,7 +113,8 @@ def a2w(database="wards_2006"):
         js = js or {"error" : "address not found"}
         js = json.dumps(js, indent=4)
         if "callback" in request.args:
-            js = "geocoder(%s);" % js
+            func = request.args["callback"]
+            js = "%s(%s);" % (func, js)
 
         return Response(response=js, status=200, mimetype="text/javascript")
     else:
