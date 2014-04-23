@@ -8,9 +8,7 @@ import re
 from geopy.geocoders import GoogleV3
 import nominatim
 from omgeo import Geocoder
-from config import configuration
-
-logger = logging.Logger(__name__)
+from config import configuration, logger
 
 def encode(s, encoding="utf8"):
     if type(s) == unicode:
@@ -84,6 +82,9 @@ class AddressConverter(object):
                 return None
 
             results = []
+            if "status" in js and js["status"] != "OK": 
+                logger.warn("Error trying to resolve %s - %s" % (address, js.get("error_message", "Generic Error")))
+
             if "results" in js and len(js["results"]) > 0:
                 for result in js["results"]:
 
