@@ -188,7 +188,7 @@ class AddressConverter(object):
                 "lng" : lng,
             }]
         except ValueError:
-            pass
+            return None
 
 
 class WardAddressConverter(AddressConverter):
