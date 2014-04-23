@@ -29,6 +29,8 @@ def load_mps():
 main_places = load_mps()
 
 class AddressConverter(object):
+    # matches lat,lng strings
+    coords_re = re.compile('[+-]?\d+(\.\d+)?\s*,\s*[+-]?\d+(\.\d+)?$')
 
     def __init__(self, curs):
         self.curs = curs
@@ -138,6 +140,10 @@ class AddressConverter(object):
         address = address.strip()
         if address == "": return None
 
+        # is it a lat,lng string?
+        if self.coords_re.match(address):
+            return self.resolve_coords(address)
+
         if "reject_numbers" in kwargs and self.reject_all_numbers(address): return None
         if "reject_short_words" in kwargs:
             try:
@@ -170,6 +176,20 @@ class AddressConverter(object):
         self.curs.execute(sql, poi)
 
         return self.curs.fetchall()
+
+    def resolve_coords(self, coords):
+        """ Simply translate a string like "lat,lng" into
+        a results array. Returns None if the coords don't look good.
+        """
+        try:
+            lat, lng = [float(s) for s in coords.split(',', 1)]
+            return [{
+                "lat" : lat,
+                "lng" : lng,
+            }]
+        except ValueError:
+            pass
+
 
 class WardAddressConverter(AddressConverter):
 
