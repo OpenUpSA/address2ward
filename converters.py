@@ -84,6 +84,7 @@ class AddressConverter(object):
             results = []
             if "status" in js and js["status"] != "OK": 
                 logger.warn("Error trying to resolve %s - %s" % (address, js.get("error_message", "Generic Error")))
+                return None
 
             if "results" in js and len(js["results"]) > 0:
                 for result in js["results"]:
@@ -297,9 +298,50 @@ class VD2014Converter(AddressConverter):
 
         return vds
 
+class CensusConverter(AddressConverter):
+    def convert(self, address, **kwargs):
+        now1 = datetime.now()
+        results = self.convert_address(address, **kwargs) 
+        now2 = datetime.now()
+        if not results: return None
+
+        sql = """
+            SELECT
+                c.sp_code, c.sp_name, c.mp_code, c.mp_name,
+                c.mn_code, c.mn_name, c.dc_name, c.pr_code, c.pr_name
+            FROM
+                sp_sa_2011 c, 
+                (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
+            WHERE ST_DWithin(c.geog, poi, 1);"""
+
+
+        sps = []
+        for result in results:
+            rows = self.convert_to_geography(sql, result["lat"], result["lng"])
+            now3 = datetime.now()
+
+            for row in rows:
+                sps.append({
+                    "source" : result["source"],
+                    "sp_code" : int(row[0]),
+                    "sp_name" : row[1],
+                    "mp_code" : int(row[2]),
+                    "mp_name" : row[3],
+                    "mn_code" : int(row[4]),
+                    "mn_name" : row[5],
+                    "dc_name" : row[6],
+                    "pr_code" : int(row[7]),
+                    "pr_name" : row[8],
+                    "address" : result["formatted_address"],
+                    "coords" : (result["lat"], result["lng"]),
+                })
+
+        return sps
+
 converters = {
     "wards_2006" : WardAddressConverter,
     "wards_2011" : WardAddressConverter,
     "police" : PoliceAddressConverter,
     "vd_2014" : VD2014Converter,
+    "census_2011" : CensusConverter,
 }

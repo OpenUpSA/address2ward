@@ -70,6 +70,10 @@ def vd_2014():
 def police():
     return a2w("police")
 
+@app.route("/census/2011/", methods=["GET"])
+def census_2011():
+    return a2w("census_2011")
+
 def a2w(database="wards_2006"):
     """
     addition parameters for address quality can be added
