@@ -122,7 +122,7 @@ def a2w(database="wards_2006"):
             js = "%s(%s);" % (func, js)
             mimetype = "text/javascript"
 
-        return Response(response=js, status=200, mimetype)
+        return Response(response=js, status=200, mimetype=mimetype)
     else:
         return render_template("search.html")
 
