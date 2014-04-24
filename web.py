@@ -112,6 +112,7 @@ def a2w(database="wards_2006"):
     if "address" in params:
         del params["address"]
 
+    mimetype = "application/json"
     if address:
         js = get_converter(database).convert(address, **params)
         js = js or {"error" : "address not found"}
@@ -119,8 +120,9 @@ def a2w(database="wards_2006"):
         if "callback" in request.args:
             func = request.args["callback"]
             js = "%s(%s);" % (func, js)
+            mimetype = "text/javascript"
 
-        return Response(response=js, status=200, mimetype="text/javascript")
+        return Response(response=js, status=200, mimetype)
     else:
         return render_template("search.html")
 
