@@ -3,8 +3,8 @@ from fabric import api
 import os
 from config import configuration
 
-api.env.hosts = ["adi@code4sa.org:2222"]
 
+api.env.hosts = configuration["hosts"]
 def setup():
     db_config = configuration["databases"]["wards_2006"]
     local("pip install -r requirements/base.txt") 
