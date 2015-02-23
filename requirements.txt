@@ -6,6 +6,7 @@ argparse==1.2.1
 geopy==0.96.2
 gunicorn==19.2.1
 itsdangerous==0.24
+newrelic==2.44.0.36
 nominatim==0.90
 psycopg2==2.5.1
 python-omgeo==1.6.0
