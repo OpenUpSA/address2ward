@@ -68,50 +68,46 @@ class AddressConverter(object):
         return False
         
     def resolve_address_google(self, address, **kwargs):
+        encoded_address = encode(address)
+        address = urllib.quote(encoded_address)
+
+        url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, GOOGLE_API_KEY)
+        response = urllib2.urlopen(url)
+        js = response.read()
         try:
-            encoded_address = encode(address)
-            address = urllib.quote(encoded_address)
+            js = json.loads(js)
+        except ValueError as e:
+            logger.exception("Error trying to resolve %s" % address)
+            raise StandardError("Couldn't resolve %s: %s" % (address, e.message))
 
-            url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, GOOGLE_API_KEY)
-            response = urllib2.urlopen(url)
-            js = response.read()
-            try:
-                js = json.loads(js)
-            except ValueError:
-                logger.exception("Error trying to resolve %s" % address)
-                return None
+        results = []
+        if "status" in js and js["status"] != "OK": 
+            logger.warn("Error trying to resolve %s - %s" % (address, js.get("error_message", "Generic Error")))
+            raise StandardError("Couldn't resolve %s: %s" % (address, js.get("error_message")))
 
-            results = []
-            if "status" in js and js["status"] != "OK": 
-                logger.warn("Error trying to resolve %s - %s" % (address, js.get("error_message", "Generic Error")))
-                return None
+        if "results" in js and len(js["results"]) > 0:
+            for result in js["results"]:
 
-            if "results" in js and len(js["results"]) > 0:
-                for result in js["results"]:
+                res = self.reject_partial_match(result)
+                if res: continue
 
-                    res = self.reject_partial_match(result)
+                if "reject_resolution_to_main_place" in kwargs:
+                    try:
+                        res = self.reject_resolution_to_main_place(result["formatted_address"], int(kwargs["reject_resolution_to_main_place"][0]))
+                    except (ValueError, TypeError):
+                        res = self.resolution_to_main_place(result["formatted_address"])
                     if res: continue
 
-                    if "reject_resolution_to_main_place" in kwargs:
-                        try:
-                            res = self.reject_resolution_to_main_place(result["formatted_address"], int(kwargs["reject_resolution_to_main_place"][0]))
-                        except (ValueError, TypeError):
-                            res = self.resolution_to_main_place(result["formatted_address"])
-                        if res: continue
+                geom = result["geometry"]["location"]
+                results.append({
+                    "lat" : geom["lat"],
+                    "lng" : geom["lng"],   
+                    "formatted_address" : result["formatted_address"],
+                    "source" : "Google Geocoding API",
+                })
 
-                    geom = result["geometry"]["location"]
-                    results.append({
-                        "lat" : geom["lat"],
-                        "lng" : geom["lng"],   
-                        "formatted_address" : result["formatted_address"],
-                        "source" : "Google Geocoding API",
-                    })
-
-                if len(results) == 0: return None
-                return results
-        except Exception:
-            logger.exception("Error trying to resolve %s" % address)
-        return None
+            if len(results) == 0: return None
+            return results
         
     def resolve_address_esri(self, address):
         result = self.geocoder.geocode(address + ", South Africa")
