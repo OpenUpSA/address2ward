@@ -1,6 +1,0 @@
-argparse==1.2.1
-geopy==0.96.2
-psycopg2==2.5.1
-wsgiref==0.1.2
-python-omgeo==1.6.0
-git+https://github.com/rdeguzman/python-nominatim.git
