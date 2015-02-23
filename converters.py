@@ -8,7 +8,7 @@ import re
 from geopy.geocoders import GoogleV3
 import nominatim
 from omgeo import Geocoder
-from config import configuration, logger
+from config import GOOGLE_API_KEY, logger
 
 def encode(s, encoding="utf8"):
     if type(s) == unicode:
@@ -72,7 +72,7 @@ class AddressConverter(object):
             encoded_address = encode(address)
             address = urllib.quote(encoded_address)
 
-            url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, configuration["environment"]["google_key"])
+            url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, GOOGLE_API_KEY)
             response = urllib2.urlopen(url)
             js = response.read()
             try:
@@ -191,6 +191,7 @@ class AddressConverter(object):
             return None
 
 class WardAddressConverter(AddressConverter):
+    table = 'wards_2006'
 
     def convert(self, address, **kwargs):
         now1 = datetime.now()
@@ -205,9 +206,9 @@ class WardAddressConverter(AddressConverter):
                 ward_id,
                 ward_no
             FROM
-                wards,
+                {table},
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geog, poi, 1);"""
+            WHERE ST_DWithin(geog, poi, 1);""".format(table=self.table)
 
         wards = []
 
@@ -229,6 +230,10 @@ class WardAddressConverter(AddressConverter):
                 })
 
         return wards
+
+class Ward2011AddressConverter(WardAddressConverter):
+    table = 'wards_2011'
+
 
 class PoliceAddressConverter(AddressConverter):
     def convert(self, address, **kwargs):
@@ -340,7 +345,7 @@ class CensusConverter(AddressConverter):
 
 converters = {
     "wards_2006" : WardAddressConverter,
-    "wards_2011" : WardAddressConverter,
+    "wards_2011" : Ward2011AddressConverter,
     "police" : PoliceAddressConverter,
     "vd_2014" : VD2014Converter,
     "census_2011" : CensusConverter,
