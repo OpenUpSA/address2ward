@@ -33,7 +33,7 @@ class AddressConverter(object):
     def __init__(self, curs):
         self.curs = curs
         self.geolocator = GoogleV3()
-        self.nominatim = nominatim.Geocoder()
+        self.nominatim = nominatim.Nominatim()
         
         self.geocoder = Geocoder()
         self.re_numbers = re.compile("^\d+$")
@@ -127,7 +127,7 @@ class AddressConverter(object):
 
     def resolve_address_nominatim(self, address, **kwargs):
         encoded_address = encode(address)
-        results = self.nominatim.geocode(encoded_address)
+        results = self.nominatim.query(encoded_address)
         return [
             {
                 "lat" : r["lat"],
