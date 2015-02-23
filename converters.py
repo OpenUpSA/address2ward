@@ -8,7 +8,7 @@ import re
 from geopy.geocoders import GoogleV3
 import nominatim
 from omgeo import Geocoder
-from config import configuration, logger
+from config import GOOGLE_API_KEY, logger
 
 def encode(s, encoding="utf8"):
     if type(s) == unicode:
@@ -33,7 +33,7 @@ class AddressConverter(object):
     def __init__(self, curs):
         self.curs = curs
         self.geolocator = GoogleV3()
-        self.nominatim = nominatim.Geocoder()
+        self.nominatim = nominatim.Nominatim()
         
         self.geocoder = Geocoder()
         self.re_numbers = re.compile("^\d+$")
@@ -68,50 +68,46 @@ class AddressConverter(object):
         return False
         
     def resolve_address_google(self, address, **kwargs):
+        encoded_address = encode(address)
+        address = urllib.quote(encoded_address)
+
+        url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, GOOGLE_API_KEY)
+        response = urllib2.urlopen(url)
+        js = response.read()
         try:
-            encoded_address = encode(address)
-            address = urllib.quote(encoded_address)
+            js = json.loads(js)
+        except ValueError as e:
+            logger.exception("Error trying to resolve %s" % address)
+            raise StandardError("Couldn't resolve %s: %s" % (address, e.message))
 
-            url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&region=za&key=%s" % (address, configuration["environment"]["google_key"])
-            response = urllib2.urlopen(url)
-            js = response.read()
-            try:
-                js = json.loads(js)
-            except ValueError:
-                logger.exception("Error trying to resolve %s" % address)
-                return None
+        results = []
+        if "status" in js and js["status"] != "OK": 
+            logger.warn("Error trying to resolve %s - %s" % (address, js.get("error_message", "Generic Error")))
+            raise StandardError("Couldn't resolve %s: %s" % (address, js.get("error_message")))
 
-            results = []
-            if "status" in js and js["status"] != "OK": 
-                logger.warn("Error trying to resolve %s - %s" % (address, js.get("error_message", "Generic Error")))
-                return None
+        if "results" in js and len(js["results"]) > 0:
+            for result in js["results"]:
 
-            if "results" in js and len(js["results"]) > 0:
-                for result in js["results"]:
+                res = self.reject_partial_match(result)
+                if res: continue
 
-                    res = self.reject_partial_match(result)
+                if "reject_resolution_to_main_place" in kwargs:
+                    try:
+                        res = self.reject_resolution_to_main_place(result["formatted_address"], int(kwargs["reject_resolution_to_main_place"][0]))
+                    except (ValueError, TypeError):
+                        res = self.resolution_to_main_place(result["formatted_address"])
                     if res: continue
 
-                    if "reject_resolution_to_main_place" in kwargs:
-                        try:
-                            res = self.reject_resolution_to_main_place(result["formatted_address"], int(kwargs["reject_resolution_to_main_place"][0]))
-                        except (ValueError, TypeError):
-                            res = self.resolution_to_main_place(result["formatted_address"])
-                        if res: continue
+                geom = result["geometry"]["location"]
+                results.append({
+                    "lat" : geom["lat"],
+                    "lng" : geom["lng"],   
+                    "formatted_address" : result["formatted_address"],
+                    "source" : "Google Geocoding API",
+                })
 
-                    geom = result["geometry"]["location"]
-                    results.append({
-                        "lat" : geom["lat"],
-                        "lng" : geom["lng"],   
-                        "formatted_address" : result["formatted_address"],
-                        "source" : "Google Geocoding API",
-                    })
-
-                if len(results) == 0: return None
-                return results
-        except Exception:
-            logger.exception("Error trying to resolve %s" % address)
-        return None
+            if len(results) == 0: return None
+            return results
         
     def resolve_address_esri(self, address):
         result = self.geocoder.geocode(address + ", South Africa")
@@ -127,7 +123,7 @@ class AddressConverter(object):
 
     def resolve_address_nominatim(self, address, **kwargs):
         encoded_address = encode(address)
-        results = self.nominatim.geocode(encoded_address)
+        results = self.nominatim.query(encoded_address)
         return [
             {
                 "lat" : r["lat"],
@@ -191,6 +187,7 @@ class AddressConverter(object):
             return None
 
 class WardAddressConverter(AddressConverter):
+    table = 'wards_2006'
 
     def convert(self, address, **kwargs):
         now1 = datetime.now()
@@ -205,9 +202,9 @@ class WardAddressConverter(AddressConverter):
                 ward_id,
                 ward_no
             FROM
-                wards,
+                {table},
                 (SELECT ST_MakePoint(%s, %s)::geography AS poi) AS f
-            WHERE ST_DWithin(geog, poi, 1);"""
+            WHERE ST_DWithin(geog, poi, 1);""".format(table=self.table)
 
         wards = []
 
@@ -229,6 +226,10 @@ class WardAddressConverter(AddressConverter):
                 })
 
         return wards
+
+class Ward2011AddressConverter(WardAddressConverter):
+    table = 'wards_2011'
+
 
 class PoliceAddressConverter(AddressConverter):
     def convert(self, address, **kwargs):
@@ -340,7 +341,7 @@ class CensusConverter(AddressConverter):
 
 converters = {
     "wards_2006" : WardAddressConverter,
-    "wards_2011" : WardAddressConverter,
+    "wards_2011" : Ward2011AddressConverter,
     "police" : PoliceAddressConverter,
     "vd_2014" : VD2014Converter,
     "census_2011" : CensusConverter,

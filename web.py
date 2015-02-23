@@ -1,28 +1,32 @@
+import os
+
 import json
 import psycopg2
+from urlparse import urlparse, urlunparse
 from flask import Flask
 from flask import Response
 from flask import request
 from flask import render_template
 from flask import g
-from config import configuration as config
+
+import config
 #from convert import AddressConverter, Ward2006AddressConverter
 from converters import converters
 
 app = Flask(__name__)
+app.debug = config.FLASK_ENV == 'development'
 
 class UnknownDatabaseException(Exception):
     pass
 
 def get_connection(database):
-    if not database in config["databases"]:
+    if not database in config.DATABASES:
         raise UnknownDatabaseException("Could not find database: %s in configuration" % database)
 
-    db_config = config["databases"][database]
-    return psycopg2.connect(
-        database=db_config["database"], user=db_config["db_user"],
-        host=db_config["db_host"], password=db_config["db_password"]
-    )
+    scheme, netloc, path, params, query, fragment = urlparse(config.DATABASE_URL)
+    path = "/" + database
+    db_url = urlunparse([scheme, netloc, path, params, query, fragment])
+    return psycopg2.connect(config.DATABASE_URL)
 
 def get_db(database):
     if not hasattr(g, "_connections"):
@@ -128,4 +132,3 @@ def a2w(database="wards_2006"):
 
 if __name__ == "__main__":
     app.run(debug=True)
-        
