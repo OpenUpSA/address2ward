@@ -2,7 +2,6 @@ import os
 
 import json
 import psycopg2
-from urlparse import urlparse, urlunparse
 from flask import Flask
 from flask import Response
 from flask import request
@@ -23,9 +22,6 @@ def get_connection(database):
     if not database in config.DATABASES:
         raise UnknownDatabaseException("Could not find database: %s in configuration" % database)
 
-    scheme, netloc, path, params, query, fragment = urlparse(config.DATABASE_URL)
-    path = "/" + database
-    db_url = urlunparse([scheme, netloc, path, params, query, fragment])
     return psycopg2.connect(config.DATABASE_URL)
 
 def get_db(database):
