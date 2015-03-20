@@ -7,6 +7,7 @@ from flask import Response
 from flask import request
 from flask import render_template
 from flask import g
+from flask.ext.cors import CORS, cross_origin
 
 import config
 #from convert import AddressConverter, Ward2006AddressConverter
@@ -14,6 +15,9 @@ from converters import converters
 
 app = Flask(__name__)
 app.debug = config.FLASK_ENV == 'development'
+
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 class UnknownDatabaseException(Exception):
     pass
@@ -51,6 +55,7 @@ def close_connection(exception):
 @app.route("/wards/2009/", methods=["GET"])
 @app.route("/wards/2010/", methods=["GET"])
 @app.route("/", methods=["GET"])
+@cross_origin()
 def wards_2006():
     return a2w("wards_2006")
 
@@ -59,18 +64,22 @@ def wards_2006():
 @app.route("/wards/2013/", methods=["GET"])
 @app.route("/wards/2014/", methods=["GET"])
 @app.route("/wards/2015/", methods=["GET"])
+@cross_origin()
 def wards_2011():
     return a2w("wards_2011")
 
 @app.route("/votingdistricts/2014/", methods=["GET"])
+@cross_origin()
 def vd_2014():
     return a2w("vd_2014")
 
 @app.route("/police/", methods=["GET"])
+@cross_origin()
 def police():
     return a2w("police")
 
 @app.route("/census/2011/", methods=["GET"])
+@cross_origin()
 def census_2011():
     return a2w("census_2011")
 
