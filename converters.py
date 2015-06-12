@@ -81,7 +81,7 @@ class AddressConverter(object):
             raise StandardError("Couldn't resolve %s: %s" % (address, e.message))
 
         results = []
-        if "status" in js and js["status"] != "OK": 
+        if "status" in js and js["status"] not in ("OK", "ZERO_RESULTS"):
             logger.error("Error trying to resolve %s - %s (%s)" % (address, js.get("error_message", "Generic Error"), js))
             raise StandardError("Couldn't resolve %s: %s" % (address, js.get("error_message")))
 
