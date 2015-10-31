@@ -5,7 +5,7 @@ from flask import Flask
 from flask import Response
 from flask import request
 from flask import render_template
-from flask import g
+from flask import g, abort
 from flask.ext.cors import CORS, cross_origin
 
 
@@ -52,6 +52,12 @@ def close_connection(exception):
     if hasattr(g, "_connections"):
         for db in g._connections.values():
             db.close()
+
+
+@app.before_request
+def throttle():
+    if request.remote_addr == '105.233.100.17':
+        raise abort(403, 'Request limit exceeded, please contact info@code4sa.org')
 
 
 @app.route("/ping")
