@@ -6,7 +6,7 @@ argparse==1.2.1
 geopy==0.96.2
 gevent==1.0.1
 greenlet==0.4.5
-gunicorn==19.2.1
+gunicorn==19.5.0
 itsdangerous==0.24
 newrelic==2.44.0.36
 nominatim==0.1
